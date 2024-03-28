@@ -1,0 +1,8 @@
+{
+  "name": "gatsby-source-huspot",
+  "description": "Gatsbgy Plugin for querying hubspot blogs",
+  "version": "1.0.0",
+  "author": "samcyn <samsoniyanda@outlook.com>",
+  "license": "MIT",
+  "private": true
+}
