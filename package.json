@@ -4,5 +4,19 @@
   "version": "1.0.0",
   "author": "samcyn <samsoniyanda@outlook.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "gts": "^5.3.0",
+    "typescript": "~5.4.3",
+    "@types/node": "20.11.5"
+  },
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "lint:fix": "gts fix",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint"
+  }
 }
