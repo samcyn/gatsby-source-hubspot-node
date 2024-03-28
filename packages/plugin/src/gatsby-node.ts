@@ -1,1 +1,3 @@
-console.log('1233');
+export const helloWord = () => {
+  console.log("1233")
+}

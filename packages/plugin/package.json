@@ -28,7 +28,8 @@
   "devDependencies": {
     "del-cli": "^5.1.0",
     "gatsby": "^5.13.3",
-    "gatsby-plugin-utils": "^4.13.1"
+    "gatsby-plugin-utils": "^4.13.1",
+    "typescript": "^5.4.3"
   },
   "peerDependencies": {
     "gatsby": "^5.13.3"
