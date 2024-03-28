@@ -11,12 +11,20 @@
     "@types/node": "20.11.5"
   },
   "scripts": {
+    "develop:plugin": "yarn workspace plugin develop",
+    "develop:site": "yarn workspace site develop",
+    "develop": "npm-run-all -l -p 'develop:site' 'develop:plugin'",
+    "build:plugin": "yarn workspace plugin build",
+    "build:site": "yarn workspace site build",
+    "build": "npm-run-all -s 'build:plugin' 'build:site'",
+    "serve:site": "yarn workspace site serve",
     "lint": "gts lint",
-    "clean": "gts clean",
-    "compile": "tsc",
     "lint:fix": "gts fix",
-    "prepare": "yarn run compile",
-    "pretest": "yarn run compile",
-    "posttest": "yarn run lint"
-  }
+    "test": "yarn workspace plugin test",
+    "clean:gts": "gts clean",
+    "clean:plugin": "yarn workspace plugin clean",
+    "clean:site": "yarn workspace site clean",
+    "clean": "npm-run-all -p 'clean:*'"
+  },
+  "workspaces": ["packages/*"]
 }

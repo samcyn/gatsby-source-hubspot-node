@@ -1,0 +1,36 @@
+{
+  "name": "plugin",
+  "description": "An example Gatsby source plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./dist/gatsby-node.js",
+  "files": [
+    "./dist/*",
+    "gatsby-node.js"
+  ],
+  "scripts": {
+    "clean": "del-cli dist",
+    "build": "tsc",
+    "develop": "tsc --watch",
+    "prepare": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "hubspot"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "del-cli": "^5.1.0",
+    "gatsby": "^5.13.3",
+    "gatsby-plugin-utils": "^4.13.1"
+  },
+  "peerDependencies": {
+    "gatsby": "^5.13.3"
+  }
+}
