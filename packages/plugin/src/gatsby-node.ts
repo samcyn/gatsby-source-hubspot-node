@@ -1,3 +1,1 @@
-export const helloWord = () => {
-  console.log('1233');
-};
+export { onPluginInit } from './on-plugin-init';
