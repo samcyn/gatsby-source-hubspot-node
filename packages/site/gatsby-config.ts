@@ -1,4 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
+import type { IPluginOptions } from 'plugin';
+
+const HUSPOT_ENDPOINT = `http://localhost:4000/graphql`;
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -37,6 +40,12 @@ const config: GatsbyConfig = {
         path: './src/pages/',
       },
       __key: 'pages',
+    },
+    {
+      resolve: 'plugin',
+      options: {
+        endpoint: HUSPOT_ENDPOINT,
+      } satisfies IPluginOptions,
     },
   ],
 };
