@@ -80,6 +80,10 @@ module.exports = {
         format: [`PascalCase`],
         prefix: [`I`],
       },
+      {
+        selector: 'typeProperty',
+        format: null, // This disables the format requirement for interface properties
+      },
     ],
   },
   overrides: [
