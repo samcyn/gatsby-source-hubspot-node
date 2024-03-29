@@ -31,5 +31,6 @@
     "clean:plugin": "yarn workspace plugin clean",
     "clean:site": "yarn workspace site clean",
     "clean": "npm-run-all -p 'clean:*'"
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }
