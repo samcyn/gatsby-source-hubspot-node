@@ -1,4 +1,6 @@
 import type { PluginOptions as GatsbyDefaultPluginOptions, IPluginRefOptions } from 'gatsby';
+import { HeadersInit } from 'node-fetch';
+
 import { NODE_TYPES } from './constants';
 
 export interface IPostImageInput {
@@ -64,6 +66,8 @@ export type NodeBuilderInput = { type: typeof NODE_TYPES.Post; data: IPostInput 
 
 interface IPluginOptionsKeys {
   endpoint: string;
+  headers?: HeadersInit;
+  searchParams?: Record<string, string>;
 }
 
 /**

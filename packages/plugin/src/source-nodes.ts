@@ -11,10 +11,10 @@ let isFirstSource = true;
  * The sourceNodes API is the heart of a Gatsby source plugin. This is where data is ingested and transformed into Gatsby's data layer.
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes
  */
-export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOptions: IPluginOptionsInternal) => {
+export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOptions: IPluginOptionsInternal) => {
   const { actions, reporter, cache, getNodes } = gatsbyApi;
   const { touchNode } = actions;
-  const { endpoint } = pluginOptions;
+  const { endpoint, headers, searchParams } = pluginOptions;
 
   /**
    * It's good practice to give your users some feedback on progress and status. Instead of printing individual lines, use the activityTimer API.
@@ -82,12 +82,34 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
     offset: number;
   }
 
+  interface IApiResponseError {
+    correlationId: string;
+    errorType: string;
+    message: string;
+    status: string;
+  }
+
   /**
    * Fetch data from the example API. This will differ from your implementation and personal preferences on e.g. which library to use.
    * A good general recommendation is: https://github.com/sindresorhus/got
    */
   try {
-    const { objects } = await fetchRequest<IApiResponse>(endpoint);
+    const response = await fetchRequest<IApiResponse | IApiResponseError>({ endpoint, headers, searchParams });
+
+    if ('status' in response && response.status === 'error') {
+      const { correlationId, errorType, message } = response;
+
+      sourcingTimer.panicOnBuild({
+        id: ERROR_CODES.HubspotSourcing,
+        error: Error(message),
+        context: {
+          sourceMessage: errorType,
+          errorCode: 500,
+        },
+        correlationId,
+      });
+      return;
+    }
     /**
      * Gatsby's cache API uses LMDB to store data inside the .cache/caches folder.
      *
@@ -97,7 +119,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
      * https://github.com/kriszyp/lmdb-js#serialization-options
      */
     await cache.set(CACHE_KEYS.Timestamp, lastFetchedDateCurrent);
-
+    const objects = (response as IApiResponse).objects;
     const posts = objects;
 
     /**
@@ -114,12 +136,13 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
     }
 
     sourcingTimer.end();
-  } catch (errors) {
+  } catch (error) {
     sourcingTimer.panicOnBuild({
-      id: ERROR_CODES.GraphQLSourcing,
+      id: ERROR_CODES.HubspotSourcing,
+      error,
       context: {
-        sourceMessage: `Sourcing from the GraphQL API failed`,
-        graphqlError: errors[0].message,
+        sourceMessage: 'Sourcing from the Hubspot API failed',
+        errorCode: 500,
       },
     });
   }

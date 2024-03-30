@@ -45,6 +45,12 @@ const config: GatsbyConfig = {
       resolve: 'plugin',
       options: {
         endpoint: HUSPOT_ENDPOINT,
+        headers: {
+          Authorization: `Bearer pat-eu1-dd2d8ba5-5e1e-452f-8372-1dddba3694c7`,
+        },
+        searchParams: {
+          state: 'PUBLISHED',
+        },
       } satisfies IPluginOptions,
     },
   ],
