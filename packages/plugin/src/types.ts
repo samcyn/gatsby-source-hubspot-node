@@ -1,7 +1,5 @@
-import type { PluginOptions as GatsbyDefaultPluginOptions, IPluginRefOptions } from 'gatsby';
+import type { PluginOptions as GatsbyDefaultPluginOptions, IPluginRefOptions, SourceNodesArgs } from 'gatsby';
 import { HeadersInit } from 'node-fetch';
-
-import { NODE_TYPES } from './constants';
 
 export interface IPostImageInput {
   url: string;
@@ -62,12 +60,16 @@ export interface IPostInput {
   slug: string;
 }
 
-export type NodeBuilderInput = { type: typeof NODE_TYPES.Post; data: IPostInput };
+export type NodeBuilderInput<T = IPostInput> = { type: string; data: T };
+
+export type IApiResponseFormatter<T = IPostInput> = (response: IApiResponse<T> | IApiResponseError) => Array<T>;
 
 interface IPluginOptionsKeys {
   endpoint: string;
   headers?: HeadersInit;
   searchParams?: Record<string, string>;
+  apiResponseFormatter?: IApiResponseFormatter;
+  nodeBuilderFormatter?: ({ gatsbyApi, input }: { gatsbyApi: SourceNodesArgs; input: NodeBuilderInput }) => void;
 }
 
 /**
@@ -79,3 +81,17 @@ export interface IPluginOptionsInternal extends IPluginOptionsKeys, GatsbyDefaul
  * These are the public TypeScript types for consumption in gatsby-config
  */
 export interface IPluginOptions extends IPluginOptionsKeys, IPluginRefOptions {}
+
+export interface IApiResponse<T = IPostInput> {
+  total: number;
+  objects: Array<T>;
+  limit: number;
+  offset: number;
+}
+
+export interface IApiResponseError {
+  correlationId: string;
+  errorType: string;
+  message: string;
+  status: string;
+}

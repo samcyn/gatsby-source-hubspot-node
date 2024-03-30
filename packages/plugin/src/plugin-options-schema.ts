@@ -15,5 +15,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }):
     endpoint: Joi.string().uri().required().description('Hubspot API endpoint v2'),
     headers: Joi.object<unknown, IPluginOptionsInternal['headers']>(),
     searchParams: Joi.object<unknown, IPluginOptionsInternal['searchParams']>(),
+    apiResponseFormatter: Joi.func().arity(1),
+    nodeBuilderFormatter: Joi.func().arity(1),
   });
 };

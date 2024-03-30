@@ -17,7 +17,7 @@ export const onPluginInit: GatsbyNode['onPluginInit'] = ({ reporter }) => {
       level: 'ERROR',
       type: 'API.NODE.EXECUTION',
       category: 'THIRD_PARTY',
-      docsUrl: 'https://legacydocs.hubspot.com/docs/methods/blogv2/get_blog_posts',
+      docsUrl: 'https://legacydocs.hubspot.com/docs',
     },
   });
 };
