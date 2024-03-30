@@ -1,7 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 import type { IPluginOptions } from 'plugin';
 
-const HUSPOT_ENDPOINT = `http://localhost:4000/graphql`;
+const HUSPOT_ENDPOINT = 'https://api.hubapi.com/content/api/v2/blog-posts';
 
 const config: GatsbyConfig = {
   siteMetadata: {

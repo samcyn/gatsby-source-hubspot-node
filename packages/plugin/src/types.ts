@@ -20,7 +20,6 @@ interface IBlogMeta {
 
 // mirror this after hubspot blog post shape
 export interface IPostInput {
-  image: IPostImageInput;
   id: string;
   absolute_url?: string;
   author?: string;
@@ -33,7 +32,7 @@ export interface IPostInput {
   created?: number;
   current_state?: string;
   currently_published?: boolean;
-  featured_image?: IPostImageInput;
+  featured_image?: string;
   featured_image_alt_text?: string;
   featured_image_height?: number;
   featured_image_length?: number;
