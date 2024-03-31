@@ -68,7 +68,7 @@ interface IPluginOptionsKeys<T> {
   /**
    * document in node fetch
    * @params RequestInit
-   * docs available here https://github.com/node-fetch/node-fetch
+   * @see docs available here https://github.com/node-fetch/node-fetch
    */
   requestOptions?: RequestInit;
   searchParams?: Record<string, string>;
