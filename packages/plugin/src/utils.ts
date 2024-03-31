@@ -18,19 +18,22 @@ interface IApiResponse<T> {
 }
 
 export async function fetchRequest<T = IPostInput>(
-  pluginOptions: Pick<IPluginOptionsInternal<T>, 'endpoint' | 'headers' | 'searchParams'>
+  pluginOptions: Pick<IPluginOptionsInternal<T>, 'endpoint' | 'requestOptions' | 'searchParams'>
 ): Promise<IApiResponse<T>> {
-  const { endpoint, headers, searchParams } = pluginOptions;
+  const { endpoint, requestOptions, searchParams } = pluginOptions;
 
   const params = searchParams || {};
   const url = `${endpoint}?${new URLSearchParams(params).toString()}`;
 
+  const { headers, method, ...rest } = requestOptions;
+
   const response = await fetch(url, {
-    method: 'GET',
+    method: method || 'GET',
     headers: {
       ...defaultHeaders,
       ...headers,
     },
+    ...rest,
   });
 
   const result = await response.json();

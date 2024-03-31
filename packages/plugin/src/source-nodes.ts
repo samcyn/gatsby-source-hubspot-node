@@ -19,7 +19,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOp
   const { touchNode } = actions;
   const {
     endpoint,
-    headers,
+    requestOptions,
     searchParams,
     nodeType = 'Post',
     apiResponseFormatter,
@@ -90,7 +90,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOp
    * A good general recommendation is: https://github.com/sindresorhus/got
    */
   try {
-    const response = await fetchRequest({ endpoint, headers, searchParams });
+    const response = await fetchRequest({ endpoint, requestOptions, searchParams });
 
     if ('status' in response && response.status === 'error') {
       const { correlationId, errorType, message } = response;

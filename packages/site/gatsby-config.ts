@@ -1,6 +1,11 @@
 import type { GatsbyConfig } from 'gatsby';
 import type { IPluginOptions } from 'plugin';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const HUSPOT_ENDPOINT = 'https://api.hubapi.com/content/api/v2/blog-posts';
 
 const config: GatsbyConfig = {
@@ -45,8 +50,10 @@ const config: GatsbyConfig = {
       resolve: 'plugin',
       options: {
         endpoint: HUSPOT_ENDPOINT,
-        headers: {
-          Authorization: `Bearer pat-eu1-dd2d8ba5-5e1e-452f-8372-1dddba3694c7`,
+        requestOptions: {
+          headers: {
+            Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
+          },
         },
         searchParams: {
           state: 'PUBLISHED',

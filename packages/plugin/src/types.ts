@@ -1,5 +1,5 @@
 import type { PluginOptions as GatsbyDefaultPluginOptions, IPluginRefOptions, SourceNodesArgs } from 'gatsby';
-import { HeadersInit } from 'node-fetch';
+import { RequestInit } from 'node-fetch';
 
 export interface IPostImageInput {
   url: string;
@@ -65,7 +65,12 @@ export type NodeBuilderInput<T> = { type: string; data: T | Record<string, unkno
 interface IPluginOptionsKeys<T> {
   endpoint: string;
   nodeType?: string;
-  headers?: HeadersInit;
+  /**
+   * document in node fetch
+   * @params RequestInit
+   * @see docs available here https://github.com/node-fetch/node-fetch
+   */
+  requestOptions?: RequestInit;
   searchParams?: Record<string, string>;
   schemaCustomizationString?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
