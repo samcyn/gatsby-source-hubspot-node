@@ -70,7 +70,7 @@ interface IPluginOptionsKeys<T> {
    * @params RequestInit
    * docs available here https://github.com/node-fetch/node-fetch
    */
-  requestOptions: RequestInit;
+  requestOptions?: RequestInit;
   searchParams?: Record<string, string>;
   schemaCustomizationString?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
