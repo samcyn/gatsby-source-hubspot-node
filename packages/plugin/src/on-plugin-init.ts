@@ -10,11 +10,14 @@ import { ERROR_CODES } from './constants';
  * @see https://www.gatsbyjs.com/docs/reference/config-files/node-api-helpers/#reporter
  */
 export const onPluginInit: GatsbyNode['onPluginInit'] = ({ reporter }) => {
+  reporter.info('Ye! Hubspot Blog Plugin Initialized. Check ReadMe.MD file for documentations');
   reporter.setErrorMap({
-    [ERROR_CODES.GraphQLSourcing]: {
-      text: (context) => `${context.sourceMessage}: ${context.graphqlError}`,
+    [ERROR_CODES.HubspotSourcing]: {
+      text: (context) => `${context.sourceMessage}: ${context.errorCode}`,
       level: 'ERROR',
+      type: 'API.NODE.EXECUTION',
       category: 'THIRD_PARTY',
+      docsUrl: 'https://legacydocs.hubspot.com/docs',
     },
   });
 };
