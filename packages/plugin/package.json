@@ -22,9 +22,6 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {
-    "node-fetch": "^3.3.2"
-  },
   "devDependencies": {
     "del-cli": "^5.1.0",
     "gatsby": "^5.13.3",
@@ -33,5 +30,8 @@
   },
   "peerDependencies": {
     "gatsby": "^5.13.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.8"
   }
 }

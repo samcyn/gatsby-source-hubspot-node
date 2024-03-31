@@ -1,4 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
+import type { IPluginOptions } from 'plugin';
+
+const HUSPOT_ENDPOINT = 'https://api.hubapi.com/content/api/v2/blog-posts';
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -37,6 +40,44 @@ const config: GatsbyConfig = {
         path: './src/pages/',
       },
       __key: 'pages',
+    },
+    {
+      resolve: 'plugin',
+      options: {
+        endpoint: HUSPOT_ENDPOINT,
+        headers: {
+          Authorization: `Bearer pat-eu1-dd2d8ba5-5e1e-452f-8372-1dddba3694c7`,
+        },
+        searchParams: {
+          state: 'PUBLISHED',
+        },
+        //   schemaCustomizationString: `
+        //     type Post implements Node {
+        //       id: ID!
+        //     }
+        // `,
+        //   apiResponseFormatter(response: { objects: Array<Record<string, unknown>> }) {
+        //     return response.objects;
+        //   },
+        //   nodeBuilderFormatter({ gatsbyApi, input }) {
+        //     const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`);
+        //     const node = {
+        //       ...input.data,
+        //       id,
+        //       parent: null,
+        //       children: [],
+        //       internal: {
+        //         type: input.type,
+        //         /**
+        //          * The content digest is a hash of the entire node.
+        //          * Gatsby uses this internally to determine if the node needs to be updated.
+        //          */
+        //         contentDigest: gatsbyApi.createContentDigest(input.data),
+        //       },
+        //     } as NodeInput;
+        //     gatsbyApi.actions.createNode(node);
+        //   },
+      } satisfies IPluginOptions,
     },
   ],
 };
