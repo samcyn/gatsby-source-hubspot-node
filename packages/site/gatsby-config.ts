@@ -46,7 +46,7 @@ const config: GatsbyConfig = {
       options: {
         endpoint: HUSPOT_ENDPOINT,
         headers: {
-          Authorization: `Bearer ${process.env.GATSBY_SITE_URL}`,
+          Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
         },
         searchParams: {
           state: 'PUBLISHED',
