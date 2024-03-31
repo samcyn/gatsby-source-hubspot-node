@@ -1,7 +1,7 @@
 import type { GatsbyNode } from 'gatsby';
 
-import type { IPluginOptionsInternal, IApiResponse, IApiResponseError } from './types';
-import { CACHE_KEYS, ERROR_CODES, NODE_TYPES } from './constants';
+import type { IPluginOptionsInternal } from './types';
+import { CACHE_KEYS, ERROR_CODES } from './constants';
 import {
   apiResponseFormatter as defaultApiResponseFormatter,
   fetchRequest,
@@ -17,7 +17,14 @@ let isFirstSource = true;
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOptions: IPluginOptionsInternal) => {
   const { actions, reporter, cache, getNodes } = gatsbyApi;
   const { touchNode } = actions;
-  const { endpoint, headers, searchParams, apiResponseFormatter, nodeBuilderFormatter } = pluginOptions;
+  const {
+    endpoint,
+    headers,
+    searchParams,
+    nodeType = 'Post',
+    apiResponseFormatter,
+    nodeBuilderFormatter,
+  } = pluginOptions;
 
   /**
    * It's good practice to give your users some feedback on progress and status. Instead of printing individual lines, use the activityTimer API.
@@ -83,7 +90,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOp
    * A good general recommendation is: https://github.com/sindresorhus/got
    */
   try {
-    const response = await fetchRequest<IApiResponse | IApiResponseError>({ endpoint, headers, searchParams });
+    const response = await fetchRequest({ endpoint, headers, searchParams });
 
     if ('status' in response && response.status === 'error') {
       const { correlationId, errorType, message } = response;
@@ -125,7 +132,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOp
     const postNodeBuilderFormatter = nodeBuilderFormatter ? nodeBuilderFormatter : defaultNodeBuilderFormatter;
 
     for (const post of posts) {
-      postNodeBuilderFormatter({ gatsbyApi, input: { type: NODE_TYPES.Post, data: post } });
+      postNodeBuilderFormatter({ gatsbyApi, input: { type: nodeType, data: post } });
     }
 
     sourcingTimer.end();

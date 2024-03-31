@@ -60,38 +60,37 @@ export interface IPostInput {
   slug: string;
 }
 
-export type NodeBuilderInput<T = IPostInput> = { type: string; data: T };
+export type NodeBuilderInput<T> = { type: string; data: T | Record<string, unknown> };
 
-export type IApiResponseFormatter<T = IPostInput> = (response: IApiResponse<T> | IApiResponseError) => Array<T>;
-
-interface IPluginOptionsKeys {
+interface IPluginOptionsKeys<T> {
   endpoint: string;
+  nodeType?: string;
   headers?: HeadersInit;
   searchParams?: Record<string, string>;
-  apiResponseFormatter?: IApiResponseFormatter;
-  nodeBuilderFormatter?: ({ gatsbyApi, input }: { gatsbyApi: SourceNodesArgs; input: NodeBuilderInput }) => void;
+  schemaCustomizationString?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  apiResponseFormatter?: (args: any) =>
+    | Array<T>
+    | Array<{
+        [x: string]: unknown;
+      }>;
+  nodeBuilderFormatter?: ({
+    gatsbyApi,
+    input,
+    pluginOptions,
+  }: {
+    gatsbyApi: SourceNodesArgs;
+    input: NodeBuilderInput<T>;
+    pluginOptions?: IPluginOptionsInternal<T>;
+  }) => void;
 }
 
 /**
  * Gatsby expects the plugin options to be of type "PluginOptions" for gatsby-node APIs (e.g. sourceNodes)
  */
-export interface IPluginOptionsInternal extends IPluginOptionsKeys, GatsbyDefaultPluginOptions {}
+export interface IPluginOptionsInternal<T = IPostInput> extends IPluginOptionsKeys<T>, GatsbyDefaultPluginOptions {}
 
 /**
  * These are the public TypeScript types for consumption in gatsby-config
  */
-export interface IPluginOptions extends IPluginOptionsKeys, IPluginRefOptions {}
-
-export interface IApiResponse<T = IPostInput> {
-  total: number;
-  objects: Array<T>;
-  limit: number;
-  offset: number;
-}
-
-export interface IApiResponseError {
-  correlationId: string;
-  errorType: string;
-  message: string;
-  status: string;
-}
+export interface IPluginOptions<T = IPostInput> extends IPluginOptionsKeys<T>, IPluginRefOptions {}

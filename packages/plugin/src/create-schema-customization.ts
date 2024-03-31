@@ -1,5 +1,6 @@
 import type { GatsbyNode } from 'gatsby';
 import schemaCustomizationOptions from './config/schema-customization-options';
+import { IPluginOptionsInternal } from './types';
 
 /**
  * By default Gatsby, infers the data types for each node. This can be sometimes brittle or lead to hard-to-debug errors.
@@ -13,16 +14,19 @@ import schemaCustomizationOptions from './config/schema-customization-options';
  * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#explicitly-defining-data-types
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization
  */
-export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] = (
+  { actions },
+  pluginOptions: IPluginOptionsInternal
+) => {
   const { createTypes } = actions;
-
+  const { schemaCustomizationString } = pluginOptions;
   /**
    * Two things are happening here:
    * - The `Post` and `Author` types are being explicitly defined with all their fields
    * - The `author` field on the `Post` type is being linked to the `Author` type via a foreign-key relationship
    * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#foreign-key-fields
    */
-  createTypes(schemaCustomizationOptions);
+  createTypes(schemaCustomizationString || schemaCustomizationOptions);
 
   /**
    * You most often will use SDL syntax to define your data types. However, you can also use type builders for more advanced use cases

@@ -1,5 +1,5 @@
 export const NODE_TYPES = {
-  Post: 'Post',
+  // Post: 'Post',
   Asset: 'Asset',
 } as const;
 

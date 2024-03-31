@@ -51,6 +51,32 @@ const config: GatsbyConfig = {
         searchParams: {
           state: 'PUBLISHED',
         },
+        //   schemaCustomizationString: `
+        //     type Post implements Node {
+        //       id: ID!
+        //     }
+        // `,
+        //   apiResponseFormatter(response: { objects: Array<Record<string, unknown>> }) {
+        //     return response.objects;
+        //   },
+        //   nodeBuilderFormatter({ gatsbyApi, input }) {
+        //     const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`);
+        //     const node = {
+        //       ...input.data,
+        //       id,
+        //       parent: null,
+        //       children: [],
+        //       internal: {
+        //         type: input.type,
+        //         /**
+        //          * The content digest is a hash of the entire node.
+        //          * Gatsby uses this internally to determine if the node needs to be updated.
+        //          */
+        //         contentDigest: gatsbyApi.createContentDigest(input.data),
+        //       },
+        //     } as NodeInput;
+        //     gatsbyApi.actions.createNode(node);
+        //   },
       } satisfies IPluginOptions,
     },
   ],

@@ -1,7 +1,7 @@
 import type { NodeInput, SourceNodesArgs } from 'gatsby';
 import fetch, { HeadersInit } from 'node-fetch';
 
-import { IApiResponseFormatter, IPluginOptionsInternal, IPostImageInput, IPostInput } from './types';
+import { IPluginOptionsInternal, IPostImageInput, IPostInput } from './types';
 import { NODE_TYPES } from './constants';
 import { IRemoteImageNodeInput } from 'gatsby-plugin-utils/index';
 
@@ -9,9 +9,17 @@ const defaultHeaders = {
   'Content-Type': 'application/json',
 } satisfies HeadersInit;
 
-export async function fetchRequest<T>(
-  pluginOptions: Pick<IPluginOptionsInternal, 'endpoint' | 'headers' | 'searchParams'>
-): Promise<T> {
+interface IApiResponse<T> {
+  correlationId: string;
+  errorType: string;
+  message: string;
+  status: string;
+  [x: string]: Array<T> | unknown;
+}
+
+export async function fetchRequest<T = IPostInput>(
+  pluginOptions: Pick<IPluginOptionsInternal<T>, 'endpoint' | 'headers' | 'searchParams'>
+): Promise<IApiResponse<T>> {
   const { endpoint, headers, searchParams } = pluginOptions;
 
   const params = searchParams || {};
@@ -26,24 +34,25 @@ export async function fetchRequest<T>(
   });
 
   const result = await response.json();
-  return result as T;
+  return result;
 }
 
-export const apiResponseFormatter: IApiResponseFormatter<IPostInput> = (response) => {
-  if ('status' in response) {
-    return [];
-  }
+export const apiResponseFormatter: IPluginOptionsInternal<IPostInput>['apiResponseFormatter'] = (response) => {
   return response.objects;
 };
 
-export const nodeBuilderFormatter: IPluginOptionsInternal['nodeBuilderFormatter'] = ({ gatsbyApi, input }) => {
+export const nodeBuilderFormatter: IPluginOptionsInternal<IPostInput>['nodeBuilderFormatter'] = ({
+  gatsbyApi,
+  input,
+}) => {
   const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`);
 
   const extraData: Record<string, unknown> = {};
 
   if (input.type === 'Post') {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { featured_image, featured_image_alt_text, featured_image_height, featured_image_width } = input.data;
+    const { featured_image, featured_image_alt_text, featured_image_height, featured_image_width } =
+      input.data as IPostInput;
 
     const featuredImage = {
       url: featured_image,
