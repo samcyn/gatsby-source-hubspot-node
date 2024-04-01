@@ -60,11 +60,11 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
 
 ## Options
 
-1. **nodeType** (**Optional**)
-    A unique nodeType for the `gatsby-source-hubspot-nodes` instance. It's default value is `Post`. It's advisable to always set a value if you have multiple instances of `gatsby-source-hubspot-nodes` plugin.
-
-2. **endpoint** (**Required**)
+1. **endpoint** (**Required**)
     Remote url to hubspot resource. Check [Hubspot API Overview](https://legacydocs.hubspot.com/docs/overview) for more details
+
+2. **nodeType** (**Optional**)
+    A unique nodeType for the `gatsby-source-hubspot-nodes` instance. It's default value is `Post`. It's advisable to always set a value if you have multiple instances of `gatsby-source-hubspot-nodes` plugin.
 
 3. **requestOptions** (**Optional**)
     This is adapted from `node-fetch` library, [Node Fetch](https://github.com/node-fetch/node-fetch). Use this property to set headers, and methods. For details check the docs above.
@@ -79,7 +79,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
 
     a). **schemaCustomizationString** (**Optional**)
 
-        This is use to explicitly define the data shape, or add custom functionality to the query layer - this is what Gatsby’s Schema Customization API provides. Check docs for more info [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/):
+      - This is use to explicitly define the data shape, or add custom functionality to the query layer - this is what Gatsby’s Schema Customization API provides. Check docs for more info [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/):
 
         ```js:title=gatsby-config.js
           module.exports = {
@@ -108,11 +108,11 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
 
     b). **apiResponseFormatter** (**Optional**)
 
-        This is use to format response api depending on hubspot response api. Take note this formatter has to return an array of Items that match `schemaCustomizationString` option above;
+      - This is use to format response api depending on hubspot response api. Take note this formatter has to return an array of Items that match `schemaCustomizationString` option above;
 
     c). **nodeBuilderFormatter** (**Optional**)
 
-        This is a function use to build node as per [Gatsby sourceNode API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes). Note that once you have provided `schemaCustomizationString` in plugin options, you must provide  `apiResponseFormatter`, `nodeBuilderFormatter`. Here's an advanced configuration example, demonstrating how to use all available options:
+      - This is a function use to build node as per [Gatsby sourceNode API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes). Note that once you have provided `schemaCustomizationString` in plugin options, you must provide  `apiResponseFormatter`, `nodeBuilderFormatter`. Here's an advanced configuration example, demonstrating how to use all available options:
 
         ```js:title=gatsby-config.ts
         import type { NodeInput, SourceNodesArgs } from 'gatsby';
