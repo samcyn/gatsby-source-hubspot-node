@@ -68,113 +68,118 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
 
   - Remote url to hubspot resource. Check [Hubspot API Overview](https://legacydocs.hubspot.com/docs/overview) for more details
 
-
-3. **schemaCustomizationString** (**Optional**)
-
-  - This is use to explicitly define the data shape, or add custom functionality to the query layer - this is what Gatsby’s Schema Customization API provides. Check docs for more info [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/):
-
-  ```js:title=gatsby-config.js
-  module.exports = {
-    plugins: [
-      {
-        resolve: `gatsby-source-hubspot-nodes`,
-        options: {
-          // The unique nodeType for each instance
-          nodeType: `Post`,
-          // hubspot end point for blogs
-          endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_BLOGS`,
-          // this is just an example you can check the default value use under packages/plugin/src/config/schema-customization-options.ts
-          schemaCustomizationString: `
-            type Post implements Node {
-              id: ID!
-              absolute_url: String
-              author: String
-              author_name: String
-            }
-          `
-        },
-      }
-    ],
-  }
-  ```
-
-4. **requestOptions** (**Optional**)
+3. **requestOptions** (**Optional**)
 
   - This is adapted from `node-fetch` library, [Node Fetch](https://github.com/node-fetch/node-fetch). Use this property to set headers, and methods. For details check the docs above.
 
-5. **searchParams** (**Optional**)
+4. **searchParams** (**Optional**)
 
   - This is use to set search params along with the endpoint supplied to `gatsby-source-hubspot-nodes` plugin
 
-6. **apiResponseFormatter** (**Optional**)
+5. **nodeTypeOptions** (**Optional**)
 
-  - This is use to format response api depending on hubspot response api. Take note this formatter has to return an array of Items that match `schemaCustomizationString` option above;
+  - This is an advanced option and should only be use if you understand node customization from Gatsby point of view. For deeper information and understanding check the docs here [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/).
 
-7. **nodeBuilderFormatter** (**Optional**)
+  - This option has three required field `schemaCustomizationString`, `apiResponseFormatter` and `nodeBuilderFormatter`
 
-  - This is a function use to build node as per [Gatsby sourceNode API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes). Note that once you have provided `schemaCustomizationString` in plugin options, you must provide  `apiResponseFormatter`, `nodeBuilderFormatter`. Here's an advanced configuration example, demonstrating how to use all available options:
+  a). **schemaCustomizationString** (**Optional**)
 
-  ```js:title=gatsby-config.ts
-  import type { NodeInput, SourceNodesArgs } from 'gatsby';
-  // gatsby-config.js
-  module.exports = {
-    plugins: [
-      {
-        resolve: `gatsby-source-hubspot-nodes`,
-        options: {
-          nodeType: `Post`,
-          endpoint: `process.env.HUBSPOT_BLOGS_ENDPOINT`,
-          schemaCustomizationString: `
-            type Post implements Node {
-              id: ID!
-              title: String
-              author: String
-              publishDate: Date @dateformat
-            }
-          `,
-          requestOptions: {
-            headers: {
-              Authorization: `Bearer ${process.env.HUBSPOT_API_KEY}`,
+    - This is use to explicitly define the data shape, or add custom functionality to the query layer - this is what Gatsby’s Schema Customization API provides. Check docs for more info [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/):
+
+    - ```js:title=gatsby-config.js
+      module.exports = {
+        plugins: [
+          {
+            resolve: `gatsby-source-hubspot-nodes`,
+            options: {
+              // The unique nodeType for each instance
+              nodeType: `Post`,
+              // hubspot end point for blogs
+              endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_BLOGS`,
+              // this is just an example you can check the default value use under packages/plugin/src/config/schema-customization-options.ts
+              schemaCustomizationString: `
+                type Post implements Node {
+                  id: ID!
+                  absolute_url: String
+                  author: String
+                  author_name: String
+                }
+              `
+            },
+          }
+        ],
+      }
+      ```
+
+  b). **apiResponseFormatter** (**Optional**)
+
+    - This is use to format response api depending on hubspot response api. Take note this formatter has to return an array of Items that match `schemaCustomizationString` option above;
+
+  c). **nodeBuilderFormatter** (**Optional**)
+
+    - This is a function use to build node as per [Gatsby sourceNode API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes). Note that once you have provided `schemaCustomizationString` in plugin options, you must provide  `apiResponseFormatter`, `nodeBuilderFormatter`. Here's an advanced configuration example, demonstrating how to use all available options:
+
+    ```js:title=gatsby-config.ts
+    import type { NodeInput, SourceNodesArgs } from 'gatsby';
+    // gatsby-config.js
+    module.exports = {
+      plugins: [
+        {
+          resolve: `gatsby-source-hubspot-nodes`,
+          options: {
+            nodeType: `Post`,
+            endpoint: `process.env.HUBSPOT_BLOGS_ENDPOINT`,
+            schemaCustomizationString: `
+              type Post implements Node {
+                id: ID!
+                title: String
+                author: String
+                publishDate: Date @dateformat
+              }
+            `,
+            requestOptions: {
+              headers: {
+                Authorization: `Bearer ${process.env.HUBSPOT_API_KEY}`,
+              },
+            },
+            searchParams: {
+              state: 'published',
+            },
+            apiResponseFormatter: (response) => {
+              // Example formatter, for some api, it's response.results or simple response.
+              return response.data;
+            },
+            nodeBuilderFormatter: ({ gatsbyApi, input }: {
+              gatsbyApi: SourceNodesArgs
+              // type is the nodeType supplied
+              input: { type: string; data: T | Record<string, unknown> };
+            }) => {
+              // Example node builder
+              const { actions, createNodeId, createContentDigest } = gatsbyApi;
+              const { createNode } = actions;
+
+              const nodeContent = JSON.stringify(input.data);
+
+              const nodeMeta = {
+                id: createNodeId(`${input.type}-${input.data.id}`),
+                parent: null,
+                children: [],
+                internal: {
+                  type: `YourNodeType`,
+                  mediaType: `text/html`,
+                  content: nodeContent,
+                  contentDigest: createContentDigest(input.data),
+                },
+              } satisfies NodeInput;
+
+              const node = Object.assign({}, input.data, nodeMeta);
+              createNode(node);
             },
           },
-          searchParams: {
-            state: 'published',
-          },
-          apiResponseFormatter: (response) => {
-            // Example formatter, for some api, it's response.results or simple response.
-            return response.data;
-          },
-          nodeBuilderFormatter: ({ gatsbyApi, input }: {
-            gatsbyApi: SourceNodesArgs
-            // type is the nodeType supplied
-            input: { type: string; data: T | Record<string, unknown> };
-          }) => {
-            // Example node builder
-            const { actions, createNodeId, createContentDigest } = gatsbyApi;
-            const { createNode } = actions;
-
-            const nodeContent = JSON.stringify(input.data);
-
-            const nodeMeta = {
-              id: createNodeId(`${input.type}-${input.data.id}`),
-              parent: null,
-              children: [],
-              internal: {
-                type: `YourNodeType`,
-                mediaType: `text/html`,
-                content: nodeContent,
-                contentDigest: createContentDigest(input.data),
-              },
-            } satisfies NodeInput;
-
-            const node = Object.assign({}, input.data, nodeMeta);
-            createNode(node);
-          },
         },
-      },
-    ],
-  };
-  ```
+      ],
+    };
+    ```
 
 ## Troubleshooting
 

@@ -12,12 +12,14 @@ import { IPluginOptionsInternal } from './types';
  */
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }): ObjectSchema => {
   return Joi.object<unknown, IPluginOptionsInternal>({
-    nodeType: Joi.string(),
-    endpoint: Joi.string().uri().required().description('Hubspot API endpoint v2'),
-    schemaCustomizationString: Joi.string(),
+    nodeType: Joi.string().description('node type name'),
+    endpoint: Joi.string().uri().required().description('Hubspot API endpoint'),
     requestOptions: Joi.object<unknown, IPluginOptionsInternal['requestOptions']>(),
     searchParams: Joi.object<unknown, IPluginOptionsInternal['searchParams']>(),
-    apiResponseFormatter: Joi.func().arity(1),
-    nodeBuilderFormatter: Joi.func().arity(1),
+    nodeTypeOptions: Joi.object<unknown, IPluginOptionsInternal['nodeTypeOptions']>({
+      schemaCustomizationString: Joi.string().required(),
+      apiResponseFormatter: Joi.func().arity(1).required(),
+      nodeBuilderFormatter: Joi.func().arity(1).required(),
+    }),
   });
 };

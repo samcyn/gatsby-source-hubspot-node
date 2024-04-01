@@ -40,11 +40,13 @@ export async function fetchRequest<T = IPostInput>(
   return result;
 }
 
-export const apiResponseFormatter: IPluginOptionsInternal<IPostInput>['apiResponseFormatter'] = (response) => {
+export const apiResponseFormatter: IPluginOptionsInternal<IPostInput>['nodeTypeOptions']['apiResponseFormatter'] = (
+  response
+) => {
   return response.objects;
 };
 
-export const nodeBuilderFormatter: IPluginOptionsInternal<IPostInput>['nodeBuilderFormatter'] = ({
+export const nodeBuilderFormatter: IPluginOptionsInternal<IPostInput>['nodeTypeOptions']['nodeBuilderFormatter'] = ({
   gatsbyApi,
   input,
 }) => {
