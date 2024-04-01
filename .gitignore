@@ -16,3 +16,5 @@ public
 .env
 .env.production
 .env.development
+coverage
+__snapshots__

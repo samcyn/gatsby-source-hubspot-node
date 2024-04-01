@@ -14,7 +14,7 @@ import { IPluginOptionsInternal } from './types';
  * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#explicitly-defining-data-types
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization
  */
-export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] = (
+export const createSchemaCustomization: Exclude<GatsbyNode[`createSchemaCustomization`], undefined> = (
   { actions },
   pluginOptions: IPluginOptionsInternal
 ) => {
