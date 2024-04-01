@@ -9,7 +9,7 @@ require('dotenv').config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `site`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://www.samsoniyanda.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -63,7 +63,6 @@ const config: GatsbyConfig = {
       // using hubspot version 3.
       resolve: 'plugin',
       options: {
-        nodeType: 'Blog',
         endpoint: 'https://api.hubapi.com/cms/v3/blogs/posts',
         requestOptions: {
           headers: {
@@ -71,6 +70,7 @@ const config: GatsbyConfig = {
           },
         },
         nodeTypeOptions: {
+          nodeType: 'Blog',
           schemaCustomizationString: `
             type Blog implements Node {
               id: ID!
@@ -100,7 +100,6 @@ const config: GatsbyConfig = {
       // contact api
       resolve: 'plugin',
       options: {
-        nodeType: 'Contact',
         endpoint: 'https://api.hubapi.com/crm/v3/objects/contacts',
         requestOptions: {
           headers: {
@@ -108,6 +107,7 @@ const config: GatsbyConfig = {
           },
         },
         nodeTypeOptions: {
+          nodeType: 'Contact',
           schemaCustomizationString: `
             type Contact implements Node {
               id: ID!

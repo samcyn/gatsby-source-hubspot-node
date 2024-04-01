@@ -64,7 +64,6 @@ export type NodeBuilderInput<T> = { type: string; data: T | Record<string, unkno
 
 interface IPluginOptionsKeys<T> {
   endpoint: string;
-  nodeType?: string;
   /**
    * document in node fetch
    * @params RequestInit
@@ -73,6 +72,7 @@ interface IPluginOptionsKeys<T> {
   requestOptions?: RequestInit;
   searchParams?: Record<string, string>;
   nodeTypeOptions?: {
+    nodeType: string;
     schemaCustomizationString?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     apiResponseFormatter?: (args: any) =>
