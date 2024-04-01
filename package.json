@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-source-huspot",
+  "name": "gatsby-source-hubspot-nodes",
   "description": "Gatsbgy Plugin for querying hubspot blogs",
   "private": true,
   "workspaces": [
