@@ -17,14 +17,8 @@ let isFirstSource = true;
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOptions: IPluginOptionsInternal) => {
   const { actions, reporter, cache, getNodes } = gatsbyApi;
   const { touchNode } = actions;
-  const {
-    endpoint,
-    requestOptions,
-    searchParams,
-    nodeType = 'Post',
-    apiResponseFormatter,
-    nodeBuilderFormatter,
-  } = pluginOptions;
+  const { nodeType = 'Post', endpoint, requestOptions, searchParams, nodeTypeOptions = {} } = pluginOptions;
+  const { apiResponseFormatter, nodeBuilderFormatter } = nodeTypeOptions;
 
   /**
    * It's good practice to give your users some feedback on progress and status. Instead of printing individual lines, use the activityTimer API.

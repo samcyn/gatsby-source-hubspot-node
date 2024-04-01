@@ -1,6 +1,6 @@
 {
   "name": "plugin",
-  "description": "An example Gatsby source plugin",
+  "description": "The `gatsby-source-hubspot-nodes` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application",
   "version": "1.0.0",
   "license": "MIT",
   "main": "./dist/gatsby-node.js",
@@ -17,7 +17,8 @@
   "keywords": [
     "gatsby",
     "gatsby-plugin",
-    "hubspot"
+    "hubspot",
+    "cms"
   ],
   "engines": {
     "node": ">=18.0.0"

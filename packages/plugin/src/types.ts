@@ -72,22 +72,24 @@ interface IPluginOptionsKeys<T> {
    */
   requestOptions?: RequestInit;
   searchParams?: Record<string, string>;
-  schemaCustomizationString?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  apiResponseFormatter?: (args: any) =>
-    | Array<T>
-    | Array<{
-        [x: string]: unknown;
-      }>;
-  nodeBuilderFormatter?: ({
-    gatsbyApi,
-    input,
-    pluginOptions,
-  }: {
-    gatsbyApi: SourceNodesArgs;
-    input: NodeBuilderInput<T>;
-    pluginOptions?: IPluginOptionsInternal<T>;
-  }) => void;
+  nodeTypeOptions?: {
+    schemaCustomizationString?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    apiResponseFormatter?: (args: any) =>
+      | Array<T>
+      | Array<{
+          [x: string]: unknown;
+        }>;
+    nodeBuilderFormatter?: ({
+      gatsbyApi,
+      input,
+      pluginOptions,
+    }: {
+      gatsbyApi: SourceNodesArgs;
+      input: NodeBuilderInput<T>;
+      pluginOptions?: IPluginOptionsInternal<T>;
+    }) => void;
+  };
 }
 
 /**
