@@ -10,7 +10,7 @@ import { IPluginOptionsInternal } from './types';
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#pluginOptionsSchema
  * @see https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/configuring-usage-with-plugin-options/
  */
-export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({ Joi }): ObjectSchema => {
+export const pluginOptionsSchema: Exclude<GatsbyNode['pluginOptionsSchema'], undefined> = ({ Joi }): ObjectSchema => {
   return Joi.object<unknown, IPluginOptionsInternal>({
     endpoint: Joi.string().uri().required().description('Hubspot API endpoint'),
     requestOptions: Joi.object<unknown, IPluginOptionsInternal['requestOptions']>(),
