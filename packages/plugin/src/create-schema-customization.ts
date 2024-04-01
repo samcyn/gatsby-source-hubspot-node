@@ -19,8 +19,8 @@ export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] 
   pluginOptions: IPluginOptionsInternal
 ) => {
   const { createTypes } = actions;
-  const { nodeTypeOptions = {} } = pluginOptions;
-  const { schemaCustomizationString } = nodeTypeOptions;
+  const { nodeTypeOptions } = pluginOptions;
+  const { schemaCustomizationString } = nodeTypeOptions || {};
   /**
    * Two things are happening here:
    * - The `Post` and `Author` types are being explicitly defined with all their fields
