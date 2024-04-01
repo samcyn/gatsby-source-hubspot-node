@@ -1,5 +1,5 @@
 import type { GatsbyConfig, NodeInput } from 'gatsby';
-import type { IPluginOptions } from 'plugin';
+import type { IPluginOptions } from 'gatsby-source-hubspot-nodes';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config({
@@ -46,7 +46,7 @@ const config: GatsbyConfig = {
     },
     {
       // using hubspot version 2. this is the default
-      resolve: 'plugin',
+      resolve: 'gatsby-source-hubspot-nodes',
       options: {
         endpoint: 'https://api.hubapi.com/content/api/v2/blog-posts',
         requestOptions: {
@@ -61,7 +61,7 @@ const config: GatsbyConfig = {
     },
     {
       // using hubspot version 3.
-      resolve: 'plugin',
+      resolve: 'gatsby-source-hubspot-nodes',
       options: {
         endpoint: 'https://api.hubapi.com/cms/v3/blogs/posts',
         requestOptions: {
@@ -98,7 +98,7 @@ const config: GatsbyConfig = {
     },
     {
       // contact api
-      resolve: 'plugin',
+      resolve: 'gatsby-source-hubspot-nodes',
       options: {
         endpoint: 'https://api.hubapi.com/crm/v3/objects/contacts',
         requestOptions: {

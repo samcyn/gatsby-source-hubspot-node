@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-source-hubspot-nodes",
+  "name": "gatsby-source",
   "description": "Gatsbgy Plugin for querying hubspot blogs",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "samcyn <samsoniyanda@outlook.com>",
   "license": "MIT",
   "devDependencies": {
@@ -24,7 +24,7 @@
     "vitest": "^1.4.0"
   },
   "scripts": {
-    "develop:plugin": "yarn workspace plugin develop",
+    "develop:plugin": "yarn workspace gatsby-source-hubspot-nodes develop",
     "develop:site": "yarn workspace site develop",
     "develop": "npm-run-all -l -p 'develop:site' 'develop:plugin'",
     "build:plugin": "yarn workspace plugin build",
@@ -36,7 +36,7 @@
     "clean:plugin": "yarn workspace plugin clean",
     "clean:site": "yarn workspace site clean",
     "clean": "npm-run-all -p 'clean:*'",
-    "prepare": "husky",
+    "husky": "husky",
     "commit": "commit",
     "test": "vitest",
     "coverage": "vitest run --coverage"
