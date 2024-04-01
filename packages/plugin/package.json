@@ -13,7 +13,8 @@
     "clean": "del-cli dist",
     "build": "tsc",
     "develop": "tsc --watch",
-    "prepare": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "semantic-release": "semantic-release --branches main"
   },
   "keywords": [
     "gatsby",
@@ -29,6 +30,7 @@
     "del-cli": "^5.1.0",
     "gatsby": "^5.13.3",
     "gatsby-plugin-utils": "^4.13.1",
+    "semantic-release": "^23.0.6",
     "typescript": "^5.4.3"
   },
   "peerDependencies": {
@@ -39,6 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/samcyn/gatsby-source-hubspot-nodes"
+    "url": "https://github.com/samcyn/gatsby-source-hubspot-nodes.git"
   }
 }
