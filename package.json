@@ -39,7 +39,8 @@
     "husky": "husky",
     "commit": "commit",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "release:plugin": "yarn workspace gatsby-source-hubspot-nodes semantic-release"
   },
   "packageManager": "yarn@3.3.1"
 }
