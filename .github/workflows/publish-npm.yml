@@ -1,4 +1,4 @@
-name: Publish to npm with Yarn
+name: Release
 
 on:
   push:
@@ -9,29 +9,23 @@ on:
       - release
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.9.0
+          registry-url: 'https://registry.npmjs.org/'
 
-      - name: Install Yarn
-        run: npm install -g yarn@1.22.21
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Install dependencies with Yarn
-        run: yarn install --frozen-lockfile
-
-      - name: Run tests with Yarn
-        run: yarn test
-
-      - name: Publish to npm with Yarn
-        if: github.event_name == 'push' && github.ref == 'refs/heads/release'
-        run: yarn publish --access public
+      - name: Release
+        run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
