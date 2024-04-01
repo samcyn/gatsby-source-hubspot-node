@@ -16,5 +16,4 @@ public
 .env.production
 .env.development
 coverage
-__snapshots__
 package-lock.json
