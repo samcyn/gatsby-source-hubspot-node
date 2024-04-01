@@ -126,7 +126,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (gatsbyApi, pluginOp
     const postNodeBuilderFormatter = nodeBuilderFormatter ? nodeBuilderFormatter : defaultNodeBuilderFormatter;
 
     for (const post of posts) {
-      postNodeBuilderFormatter({ gatsbyApi, input: { type: nodeType, data: post } });
+      postNodeBuilderFormatter({ gatsbyApi, input: { type: nodeType, data: post }, pluginOptions });
     }
 
     sourcingTimer.end();

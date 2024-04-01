@@ -1,12 +1,10 @@
-import type { GatsbyConfig } from 'gatsby';
+import type { GatsbyConfig, NodeInput } from 'gatsby';
 import type { IPluginOptions } from 'plugin';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-
-const HUSPOT_ENDPOINT = 'https://api.hubapi.com/content/api/v2/blog-posts';
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -47,9 +45,10 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
+      // using hubspot version 2. this is the default
       resolve: 'plugin',
       options: {
-        endpoint: HUSPOT_ENDPOINT,
+        endpoint: 'https://api.hubapi.com/content/api/v2/blog-posts',
         requestOptions: {
           headers: {
             Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
@@ -58,32 +57,78 @@ const config: GatsbyConfig = {
         searchParams: {
           state: 'PUBLISHED',
         },
-        //   schemaCustomizationString: `
-        //     type Post implements Node {
-        //       id: ID!
-        //     }
-        // `,
-        //   apiResponseFormatter(response: { objects: Array<Record<string, unknown>> }) {
-        //     return response.objects;
-        //   },
-        //   nodeBuilderFormatter({ gatsbyApi, input }) {
-        //     const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`);
-        //     const node = {
-        //       ...input.data,
-        //       id,
-        //       parent: null,
-        //       children: [],
-        //       internal: {
-        //         type: input.type,
-        //         /**
-        //          * The content digest is a hash of the entire node.
-        //          * Gatsby uses this internally to determine if the node needs to be updated.
-        //          */
-        //         contentDigest: gatsbyApi.createContentDigest(input.data),
-        //       },
-        //     } as NodeInput;
-        //     gatsbyApi.actions.createNode(node);
-        //   },
+      } satisfies IPluginOptions,
+    },
+    {
+      // using hubspot version 3.
+      resolve: 'plugin',
+      options: {
+        nodeType: 'Blog',
+        endpoint: 'https://api.hubapi.com/cms/v3/blogs/posts',
+        requestOptions: {
+          headers: {
+            Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
+          },
+        },
+        nodeTypeOptions: {
+          schemaCustomizationString: `
+            type Blog implements Node {
+              id: ID!
+              state: String
+              slug: String
+            }
+          `,
+          apiResponseFormatter: (response) => response.results,
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
+        },
+      } satisfies IPluginOptions,
+    },
+    {
+      // contact api
+      resolve: 'plugin',
+      options: {
+        nodeType: 'Contact',
+        endpoint: 'https://api.hubapi.com/crm/v3/objects/contacts',
+        requestOptions: {
+          headers: {
+            Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
+          },
+        },
+        nodeTypeOptions: {
+          schemaCustomizationString: `
+            type Contact implements Node {
+              id: ID!
+            }
+          `,
+          apiResponseFormatter: (response) => response.results,
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
+        },
       } satisfies IPluginOptions,
     },
   ],
