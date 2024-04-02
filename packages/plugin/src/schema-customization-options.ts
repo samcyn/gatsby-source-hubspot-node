@@ -1,4 +1,4 @@
-const schemaCustomizationOptions = `
+export const schemaCustomizationOptions = `
   type BlogAuthor {
     avatar: String
     id: ID
@@ -57,5 +57,3 @@ const schemaCustomizationOptions = `
     height: Int!
   }
 `;
-
-export default schemaCustomizationOptions;

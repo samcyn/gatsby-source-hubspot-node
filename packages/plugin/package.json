@@ -41,6 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/samcyn/gatsby-source-hubspot-nodes.git"
+    "url": "git+https://github.com/samcyn/gatsby-source-hubspot-nodes.git"
   }
 }
