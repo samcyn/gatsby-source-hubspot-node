@@ -1,6 +1,6 @@
 # gatsby-source-hubspot-node
 
-The `gatsby-source-hubspot-node` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application. This plugin is perfect for developers looking to leverage HubSpot's powerful CRM and content management features within their Gatsby projects, making it easier to create dynamic, content-driven websites. This plugin supports sourcing various HubSpot resources, such as blog posts, contacts, and forms, into Gatsby's GraphQL data layer, allowing you to query your HubSpot data right alongside your other data sources. Whether you're building a blog, a landing page, or a full-fledged website, gatsby-source-hubspot-node makes it straightforward to incorporate your HubSpot data.
+This plugin supports sourcing various HubSpot resources, such as blog posts, contacts, and forms, into Gatsby's GraphQL data layer, allowing you to query your HubSpot data right alongside your other data sources. Whether you're building a blog, a landing page, or a full-fledged website, gatsby-source-hubspot-node makes it straightforward to incorporate your HubSpot data.
 
 
 
@@ -29,7 +29,7 @@ yarn add gatsby-source-hubspot-node
 
 ## How to use
 
-You can have multiple instances of this plugin in your `gatsby-config` to read data from different Hubspot CMS. Be sure to give each instance a unique `nodeType`.
+You can have multiple instances of this plugin in your `gatsby-config` to read data from different Hubspot CMS. Be sure to give each instance a unique `nodeType` in the nodeTypeOptions.
 
 ```js:title=gatsby-config.js
 module.exports = {
@@ -37,8 +37,6 @@ module.exports = {
     {
       resolve: `gatsby-source-hubspot-node`,
       options: {
-        // The unique nodeType for each instance
-        nodeType: `Post`,
         // hubspot end point for blogs
         endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_BLOGS`,
       },
@@ -46,10 +44,34 @@ module.exports = {
     {
       resolve: `gatsby-source-hubspot-node`,
       options: {
-        // The unique nodeType for each instance
-        nodeType: `Contact`,
         // hubspot end point for contact
         endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_CONTACTS`,
+        nodeTypeOptions: {
+          // The unique nodeType for each instance
+          nodeType: 'Contact',
+          schemaCustomizationString: `
+            type Contact implements Node {
+              id: ID!
+              state: String
+              slug: String
+            }
+          `,
+          apiResponseFormatter: (response) => response.results,
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
+        },
       },
     },
   ],
