@@ -1,5 +1,5 @@
 import type { GatsbyNode } from 'gatsby';
-import schemaCustomizationOptions from './config/schema-customization-options';
+import { schemaCustomizationOptions } from './schema-customization-options';
 import { IPluginOptionsInternal } from './types';
 
 /**
