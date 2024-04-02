@@ -6253,9 +6253,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
-  version: 1.0.30001603
-  resolution: "caniuse-lite@npm:1.0.30001603"
-  checksum: e66e0d24b899c2ed3fdcc2dd44df29c4fc06d74fa8f43abe81fc7cff4a72b092d438e0fb5b7daeb252ee267519f32c6c7d229a15e7a4f4263afef6ea3832b661
+  version: 1.0.30001605
+  resolution: "caniuse-lite@npm:1.0.30001605"
+  checksum: 8af1ae364c4f4c0796e7fd1aa195dfae2d9c3011c61f0907030201e4fc31a12e81407a13cca621a3b7f6a1eb0217ee9c681fb15670074c204a54edfab798d5c9
   languageName: node
   linkType: hard
 
@@ -10030,9 +10030,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-hubspot-nodes@workspace:packages/plugin":
+"gatsby-source-hubspot-node@workspace:packages/plugin":
   version: 0.0.0-use.local
-  resolution: "gatsby-source-hubspot-nodes@workspace:packages/plugin"
+  resolution: "gatsby-source-hubspot-node@workspace:packages/plugin"
   dependencies:
     del-cli: ^5.1.0
     gatsby: ^5.13.3
