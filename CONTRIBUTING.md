@@ -67,12 +67,12 @@ Ensure that your changes do not introduce regressions or break existing function
 
 ## Documentation
 
-If you're updating documentation, please ensure that your changes are clear and concise. Documentation can be found in the [docs folder](https://github.com/samcyn/gatsby-source-hubspot-node/blob/main/README.md).
+If you're updating documentation, please ensure that your changes are clear and concise. Documentation can be found in the [docs folder](./README.md).
 
 ## Additional Resources
 
-- [Project Documentation](https://github.com/samcyn/gatsby-source-hubspot-node/blob/main/README.md)
-- [Issue Tracker](https://github.com/samcyn/gatsby-source-hubspot-node/issues)
+- [Project Documentation](./README.md)
+- [Issue Tracker](./issues)
 
 ## Conclusion
 
