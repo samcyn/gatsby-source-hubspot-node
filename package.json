@@ -24,7 +24,7 @@
     "vitest": "^1.4.0"
   },
   "scripts": {
-    "develop:plugin": "yarn workspace gatsby-source-hubspot-nodes develop",
+    "develop:plugin": "yarn workspace gatsby-source-hubspot-node develop",
     "develop:site": "yarn workspace site develop",
     "develop": "npm-run-all -l -p 'develop:site' 'develop:plugin'",
     "build:plugin": "yarn workspace plugin build",
@@ -40,7 +40,7 @@
     "commit": "commit",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "release:plugin": "yarn workspace gatsby-source-hubspot-nodes semantic-release"
+    "release:plugin": "yarn workspace gatsby-source-hubspot-node semantic-release"
   },
   "packageManager": "yarn@3.3.1"
 }
