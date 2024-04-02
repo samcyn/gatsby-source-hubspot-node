@@ -1,5 +1,5 @@
 import type { GatsbyNode } from 'gatsby';
-import schemaCustomizationOptions from './config/schema-customization-options';
+import { schemaCustomizationOptions } from './schema-customization-options';
 import { IPluginOptionsInternal } from './types';
 
 /**
@@ -14,13 +14,13 @@ import { IPluginOptionsInternal } from './types';
  * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#explicitly-defining-data-types
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization
  */
-export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] = (
+export const createSchemaCustomization: Exclude<GatsbyNode[`createSchemaCustomization`], undefined> = (
   { actions },
   pluginOptions: IPluginOptionsInternal
 ) => {
   const { createTypes } = actions;
-  const { nodeTypeOptions = {} } = pluginOptions;
-  const { schemaCustomizationString } = nodeTypeOptions;
+  const { nodeTypeOptions } = pluginOptions;
+  const { schemaCustomizationString } = nodeTypeOptions || {};
   /**
    * Two things are happening here:
    * - The `Post` and `Author` types are being explicitly defined with all their fields

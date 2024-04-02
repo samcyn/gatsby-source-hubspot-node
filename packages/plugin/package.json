@@ -1,6 +1,7 @@
 {
-  "name": "plugin",
-  "description": "The `gatsby-source-hubspot-nodes` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application",
+  "name": "gatsby-source-hubspot-node",
+  "description": "The `gatsby-source-hubspot-node` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application",
+  "author": "samcyn <samsoniyanda@outlook.com>",
   "version": "1.0.0",
   "license": "MIT",
   "main": "./dist/gatsby-node.js",
@@ -12,7 +13,8 @@
     "clean": "del-cli dist",
     "build": "tsc",
     "develop": "tsc --watch",
-    "prepare": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "semantic-release": "semantic-release --branches release"
   },
   "keywords": [
     "gatsby",
@@ -20,13 +22,15 @@
     "hubspot",
     "cms"
   ],
+  "types": "dist/types.d.ts",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.8.1"
   },
   "devDependencies": {
     "del-cli": "^5.1.0",
     "gatsby": "^5.13.3",
     "gatsby-plugin-utils": "^4.13.1",
+    "semantic-release": "^23.0.6",
     "typescript": "^5.4.3"
   },
   "peerDependencies": {
@@ -34,5 +38,12 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samcyn/gatsby-source-hubspot-node.git"
+  },
+  "release": {
+    "initialVersion": "1.0.0"
   }
 }
