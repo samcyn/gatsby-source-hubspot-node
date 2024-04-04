@@ -22,8 +22,14 @@ export async function fetchRequest<T = IPostInput>(
 ): Promise<IApiResponse<T>> {
   const { endpoint, requestOptions, searchParams } = pluginOptions;
 
-  const params = searchParams || {};
-  const url = `${endpoint}?${new URLSearchParams(params).toString()}`;
+  let url = endpoint;
+
+  if (searchParams) {
+    const params = new URLSearchParams(searchParams);
+    // Check if endpoint already contains query parameters
+    const hasQueryParams = endpoint.includes('?');
+    url += hasQueryParams ? `&${params.toString()}` : `?${params.toString()}`;
+  }
 
   const { headers, method, ...rest } = requestOptions;
 

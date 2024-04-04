@@ -1,6 +1,6 @@
-# gatsby-source-hubspot-nodes
+# gatsby-source-hubspot-node
 
-The `gatsby-source-hubspot-nodes` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application. This plugin is perfect for developers looking to leverage HubSpot's powerful CRM and content management features within their Gatsby projects, making it easier to create dynamic, content-driven websites. This plugin supports sourcing various HubSpot resources, such as blog posts, contacts, and forms, into Gatsby's GraphQL data layer, allowing you to query your HubSpot data right alongside your other data sources. Whether you're building a blog, a landing page, or a full-fledged website, gatsby-source-hubspot-nodes makes it straightforward to incorporate your HubSpot data.
+This plugin supports sourcing various HubSpot resources, such as blog posts, contacts, and forms, into Gatsby's GraphQL data layer, allowing you to query your HubSpot data right alongside your other data sources. Whether you're building a blog, a landing page, or a full-fledged website, gatsby-source-hubspot-node makes it straightforward to incorporate your HubSpot data.
 
 
 
@@ -17,38 +17,61 @@ Before you begin, make sure you have the following:
 ## Installation
 
 ```shell
-npm install gatsby-source-hubspot-nodes
+npm install gatsby-source-hubspot-node
 ```
 
 or
-```
-yarn add gatsby-source-hubspot-nodes
+
+```shell
+yarn add gatsby-source-hubspot-node
 ```
 
 
 ## How to use
 
-You can have multiple instances of this plugin in your `gatsby-config` to read data from different Hubspot CMS. Be sure to give each instance a unique `nodeType`.
+You can have multiple instances of this plugin in your `gatsby-config` to read data from different Hubspot CMS. Be sure to give each instance a unique `nodeType` in the nodeTypeOptions.
 
 ```js:title=gatsby-config.js
 module.exports = {
   plugins: [
     {
-      resolve: `gatsby-source-hubspot-nodes`,
+      resolve: `gatsby-source-hubspot-node`,
       options: {
-        // The unique nodeType for each instance
-        nodeType: `Post`,
         // hubspot end point for blogs
         endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_BLOGS`,
       },
     },
     {
-      resolve: `gatsby-source-hubspot-nodes`,
+      resolve: `gatsby-source-hubspot-node`,
       options: {
-        // The unique nodeType for each instance
-        nodeType: `Contact`,
         // hubspot end point for contact
         endpoint: `process.env.HUBSPOT_API_ENDPOINT_FOR_CONTACTS`,
+        nodeTypeOptions: {
+          // The unique nodeType for each instance
+          nodeType: 'Contact',
+          schemaCustomizationString: `
+            type Contact implements Node {
+              id: ID!
+              state: String
+              slug: String
+            }
+          `,
+          apiResponseFormatter: (response) => response.results,
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
+        },
       },
     },
   ],
@@ -67,7 +90,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
     This is adapted from `node-fetch` library, [Node Fetch](https://github.com/node-fetch/node-fetch). Use this property to set headers, and methods. For details check the docs above.
 
 3. **searchParams** (**Optional**)
-    This is use to set search params along with the endpoint supplied to `gatsby-source-hubspot-nodes` plugin
+    This is use to set search params along with the endpoint supplied to `gatsby-source-hubspot-node` plugin
 
 4. **nodeTypeOptions** (**Optional**)
     This is an advanced option and should only be use if you understand node customization from Gatsby point of view. For deeper information and understanding check the docs here [Customizing the GraphQL Schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/).
@@ -75,7 +98,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
     This option has four required field `nodeType`, `schemaCustomizationString`, `apiResponseFormatter` and `nodeBuilderFormatter`
 
     a). **nodeType** (**Optional**)
-      - A unique nodeType for the `gatsby-source-hubspot-nodes` instance. It's default value is `Post`. It's advisable to make sure this value is unique if you have multiple instances of `gatsby-source-hubspot-nodes` plugin.
+      - A unique nodeType for the `gatsby-source-hubspot-node` instance. It's default value is `Post`. It's advisable to make sure this value is unique if you have multiple instances of `gatsby-source-hubspot-node` plugin.
 
     b). **schemaCustomizationString** (**Optional**)
 
@@ -85,7 +108,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
           module.exports = {
             plugins: [
               {
-                resolve: `gatsby-source-hubspot-nodes`,
+                resolve: `gatsby-source-hubspot-node`,
                 options: {
                   // The unique nodeType for each instance
                   nodeType: `Post`,
@@ -120,7 +143,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
         module.exports = {
           plugins: [
             {
-              resolve: `gatsby-source-hubspot-nodes`,
+              resolve: `gatsby-source-hubspot-node`,
               options: {
                 nodeType: `Post`,
                 endpoint: `process.env.HUBSPOT_BLOGS_ENDPOINT`,
@@ -185,7 +208,7 @@ In the above example, `Post` and `Contact` nodes will be created inside GraphQL.
 Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
 
 ## Support
-For support and questions, please open an issue on the GitHub repository or contact the plugin maintainers.
+For support and questions, please open an issue on the GitHub repository or contact the plugin maintainers `samsoniyanda@outlook.com`.

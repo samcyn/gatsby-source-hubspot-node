@@ -1,5 +1,6 @@
 import { expect, describe, beforeEach, afterEach, it, vi } from 'vitest';
-import { createAssetNode, nodeBuilderFormatter } from '../src/utils';
+
+import { createAssetNode, nodeBuilderFormatter, fetchRequest } from '../src/utils';
 import { authorFixture, postFixture, postImageFixture } from './fixtures';
 
 const nodeIdPlaceholder = `unique-id`;
@@ -7,7 +8,7 @@ const contentDigestPlaceholder = `unique-content-digest`;
 
 let gatsbyApi;
 
-describe(`sourceNodes`, () => {
+describe(`utils`, () => {
   beforeEach(() => {
     gatsbyApi = {
       cache: {
@@ -106,4 +107,104 @@ describe(`sourceNodes`, () => {
       `);
     });
   });
+
+  describe('fetchRequest', () => {
+    afterEach(() => {
+      vi.resetAllMocks();
+    });
+
+    const mockedMethod = vi.hoisted(() => {
+      return async () => {
+        const mockResponseData = {
+          data: 'successful',
+        };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const fetch = (url: RequestInfo, options: RequestInit) => {
+          expect(url).toBe('https://example.com/api?param1=value1&param2=value2');
+          expect(options.method).toBe('GET');
+          return {
+            json: () => {
+              return mockResponseData;
+            },
+          };
+        };
+        return {
+          default: fetch,
+        };
+      };
+    });
+
+    it('should format URL correctly when searchParams are provided', async () => {
+      vi.mock('node-fetch', mockedMethod);
+
+      const pluginOptions = {
+        endpoint: 'https://example.com/api',
+        requestOptions: {},
+        searchParams: {
+          param1: 'value1',
+          param2: 'value2',
+        },
+      };
+
+      const response = await fetchRequest(pluginOptions);
+      expect(response.data).toBe('successful');
+    });
+  });
+
+  // it('should format URL correctly when endpoint already contains query parameters', async () => {
+  //   const pluginOptions = {
+  //     endpoint: 'https://example.com/api?key1=value1',
+  //     requestOptions: {},
+  //     searchParams: {
+  //       param2: 'value2',
+  //     },
+  //   };
+
+  //   await fetchRequest(pluginOptions);
+
+  //   expect.deepEqual(fetch.mock.calls[0], ['https://example.com/api?key1=value1&param2=value2', expect.any(Object)]);
+  // });
 });
+
+// it('should use default method and headers if not provided in requestOptions', async () => {
+//   const pluginOptions = {
+//     endpoint: 'https://example.com/api',
+//     requestOptions: {},
+//     searchParams: {},
+//   };
+
+//   await fetchRequest(pluginOptions);
+
+//   expect.deepEqual(fetch.mock.calls[0], [
+//     'https://example.com/api',
+//     expect.objectContaining({
+//       method: 'GET',
+//       headers: expect.any(Object), // Assuming defaultHeaders is defined globally or imported
+//     }),
+//   ]);
+// });
+
+// it('should use provided method and headers from requestOptions', async () => {
+//   const pluginOptions = {
+//     endpoint: 'https://example.com/api',
+//     requestOptions: {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     },
+//     searchParams: {},
+//   };
+
+//   await fetchRequest(pluginOptions);
+
+//   assert.deepEqual(fetch.mock.calls[0], [
+//     'https://example.com/api',
+//     expect.objectContaining({
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     }),
+//   ]);
+// });
