@@ -1,4 +1,41 @@
 import * as React from 'react';
+import AppInput from '@components/AppInput';
+import { Link } from 'gatsby';
+
+type MenuItemProps = {
+  to: string;
+  title: string;
+  children?: React.ReactNode;
+};
+
+const MenuItem = ({ to, title, children }: MenuItemProps) => {
+  return (
+    <li>
+      <Link to={to} className="flex text-primary hover:text-primary/75 py-1 items-center gap-2">
+        {children ? (
+          children
+        ) : (
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
+            />
+          </svg>
+        )}
+        <span className="shrink grow text-sm">{title}</span>
+      </Link>
+    </li>
+  );
+};
 
 const AppAside = () => (
   <aside className="fixed h-screen top-0 bottom-0 w-60 bg-white py-5 px-4 z-0 md:z-10">
@@ -20,13 +57,41 @@ const AppAside = () => (
       </a>
     </div>
     <div>
-      <input className="w-full" type="search" aria-label="search" />
+      <AppInput placeholder="Search" />
     </div>
-    <ul>
-      <li>Dashboard 1</li>
-      <li>Dashboard 2</li>
-      <li>Dashboard 3</li>
-      <li>Dashboard 4</li>
+    <ul className="flex flex-col gap-10">
+      <li>
+        <p className="text-primary opacity-70 text-sm">Main</p>
+        <ul className="pl-5">
+          <MenuItem to="/" title="Dashboard" />
+          <MenuItem to="/" title="Dashboard">
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.1"
+                d="M10 3v4a1 1 0 0 1-1 1H5m5 4-2 2 2 2m4-4 2 2-2 2m5-12v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"
+              />
+            </svg>
+          </MenuItem>
+          <MenuItem to="/" title="Dashboard" />
+        </ul>
+      </li>
+      <li>
+        <p className="text-primary opacity-70 text-sm">Other</p>
+        <ul className="pl-5">
+          <MenuItem to="/" title="Dashboard" />
+          <MenuItem to="/" title="Dashboard" />
+          <MenuItem to="/" title="Dashboard" />
+        </ul>
+      </li>
     </ul>
   </aside>
 );
