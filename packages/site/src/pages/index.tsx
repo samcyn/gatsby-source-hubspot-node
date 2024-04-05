@@ -1,24 +1,18 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 
+import AppAside from '@components/AppAside';
+import AppHeader from '@components/AppHeader';
+
 const IndexPage: React.FC<PageProps> = () => {
   const [open, setOpen] = React.useState(false);
+
+  const onOpen = () => {
+    setOpen((p) => !p);
+  };
   return (
     <main className="bg-gray-500 min-h-screen overflow-hidden">
-      <aside className="fixed h-screen top-0 bottom-0 w-60 bg-slate-950 py-5 px-4 z-0 md:z-10">
-        <div>
-          <a>logo</a>
-        </div>
-        <div>
-          <input type="search" />
-        </div>
-        <ul>
-          <li>Dashboard 1</li>
-          <li>Dashboard 2</li>
-          <li>Dashboard 3</li>
-          <li>Dashboard 4</li>
-        </ul>
-      </aside>
+      <AppAside />
       <section
         className={`
         w-full min-h-screen bg-gray-500 
@@ -27,18 +21,10 @@ const IndexPage: React.FC<PageProps> = () => {
       `}
       >
         {/* overlay */}
-        {open && <div onClick={() => setOpen((p) => !p)} className="fixed md:hidden inset-0 bg-white/25"></div>}
+        {open && <div onClick={onOpen} className="fixed md:hidden inset-0 bg-white/25"></div>}
         <section className="px-4 md:px-25">
-          <header>
-            <nav className="flex items-center justify-between">
-              <button className="md:hidden" onClick={() => setOpen((p) => !p)}>
-                humberger
-              </button>
-              <a>back</a>
-              <button>items</button>
-            </nav>
-          </header>
-          <p>Audio VISUAL media</p>
+          <AppHeader onOpen={onOpen} />
+          <p>Gatsby Source Hubspot Node Plugin v1.0.1</p>
           <ul>
             <li>Posts</li>
             <li>Contacts</li>
