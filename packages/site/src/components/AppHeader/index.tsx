@@ -46,7 +46,9 @@ const AppHeader = ({ onOpen }: { onOpen: () => void }) => {
               className="text-primary dark:text-primary"
               href="https://github.com/samcyn/gatsby-source-hubspot-node.git"
               target="_blank"
+              aria-label="repo github link"
             >
+              <span className="sr-only">repo github link</span>
               <svg
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"

@@ -57,12 +57,12 @@ const AppAside = () => (
       </a>
     </div>
     <div>
-      <AppInput placeholder="Search" />
+      <AppInput placeholder="Search" name="search" />
     </div>
     <ul className="flex flex-col gap-10">
       <li>
         <p className="text-primary opacity-70 text-sm">Main</p>
-        <ul className="pl-5">
+        <ul className="pl-3">
           <MenuItem to="/" title="Dashboard" />
           <MenuItem to="/" title="Dashboard">
             <svg
@@ -86,7 +86,7 @@ const AppAside = () => (
       </li>
       <li>
         <p className="text-primary opacity-70 text-sm">Other</p>
-        <ul className="pl-5">
+        <ul className="pl-3">
           <MenuItem to="/" title="Dashboard" />
           <MenuItem to="/" title="Dashboard" />
           <MenuItem to="/" title="Dashboard" />
