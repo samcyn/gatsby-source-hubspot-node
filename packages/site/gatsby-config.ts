@@ -131,6 +131,23 @@ const config: GatsbyConfig = {
         },
       } satisfies IPluginOptions,
     },
+    {
+      resolve: 'gatsby-source-hubspot-node',
+      options: {
+        endpoint: 'https://api.github.com/repos/samcyn/gatsby-source-hubspot-node',
+        nodeTypeOptions: {
+          nodeType: 'repository',
+          schemaCustomizationString: `
+            type Repository implements Node {
+              id: ID!
+              name: String
+              description: String
+            }
+          `,
+          apiResponseFormatter: (response) => [response],
+        },
+      } satisfies IPluginOptions,
+    },
   ],
 };
 

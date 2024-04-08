@@ -69,7 +69,7 @@ const AppTabs = ({ children }: Props) => {
           </li>
         ))}
       </ul>
-      <div className="flex flex-nowrap overflow-hidden pt-4">
+      <div className="flex flex-nowrap overflow-hidden pt-6">
         {nodes.map((node, index) => (
           <AppTab
             key={node.props.header}

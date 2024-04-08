@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+  body {
+    @apply text-primary;
+  }
   .animate__animated {
-    animation-duration: 0.33s;
     animation-duration: 0.33s;
     animation-fill-mode: both;
   }
