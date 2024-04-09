@@ -5,7 +5,7 @@ const AppHeader = ({ onOpen }: { onOpen: () => void }) => {
   return (
     <header>
       <nav className="flex items-center justify-between py-4">
-        <button aria-label="toggle menu" className="text-primary dark:text-primary text-4xl md:hidden" onClick={onOpen}>
+        <button aria-label="toggle menu" className="text-gray-80 dark:text-gray-80 text-4xl md:hidden" onClick={onOpen}>
           <svg
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const AppHeader = ({ onOpen }: { onOpen: () => void }) => {
         <ul className="flex gap-4 ml-auto">
           <li>
             <a
-              className="text-primary dark:text-primary"
+              className="text-gray-80 dark:text-gray-80"
               href="https://github.com/samcyn/gatsby-source-hubspot-node.git"
               target="_blank"
               aria-label="repo github link"

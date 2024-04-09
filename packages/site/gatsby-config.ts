@@ -145,6 +145,20 @@ const config: GatsbyConfig = {
             }
           `,
           apiResponseFormatter: (response) => [response],
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
         },
       } satisfies IPluginOptions,
     },

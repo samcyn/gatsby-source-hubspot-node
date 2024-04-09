@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const AppThemeSwitcher = ({ theme = 'light' }) => {
   return (
-    <button aria-label="switcher" className="flex items-center justify-center text-primary dark:text-primary">
+    <button aria-label="switcher" className="flex items-center justify-center text-gray-80 dark:text-gray-80">
       {theme === 'light' ? (
         <svg
           aria-hidden="true"

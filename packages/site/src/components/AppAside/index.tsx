@@ -38,7 +38,7 @@ const MenuItem = ({ to, title, children }: MenuItemProps) => {
 };
 
 const AppAside = () => (
-  <aside className="fixed h-screen top-0 bottom-0 w-60 bg-white py-5 px-4 z-0 md:z-10">
+  <aside className="fixed h-screen top-0 bottom-0 w-60 bg-white shadow-lg py-5 px-4 z-0 md:z-10">
     <div>
       <a aria-label="Link to home" className="" href="/">
         <svg className="" width="91" height="24" fill="#663399" viewBox="0 0 106 28">

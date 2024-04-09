@@ -22,11 +22,11 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
     setOpen((p) => !p);
   };
   return (
-    <main className="bg-complimentary min-h-screen overflow-hidden">
+    <main className="bg-white min-h-screen overflow-hidden">
       <AppAside />
       <section
         className={`
-        w-full min-h-screen bg-complimentary 
+        w-full min-h-screen bg-white 
         relative z-10 md:z-0 md:pl-60 transition
         ${open ? 'translate-x-60 md:translate-x-0' : 'translate-x-0'}
       `}
@@ -35,44 +35,42 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
         {open && <div onClick={onOpen} className="fixed md:hidden inset-0 bg-white/25"></div>}
         <section className="px-4 md:px-25">
           <AppHeader onOpen={onOpen} />
-          <div className="mt-10">
-            <p className="text-2xl md:text-4xl font-bold text-primary dark:text-primary">
-              <a href={repo.html_url} target="_blank">
-                Gatsby Source Hubspot Node Plugin v1.0.1
-              </a>
+          <div className="mt-10 max-w-[656px]">
+            <p className="text-2xl md:text-5xl font-bold text-dark dark:text-dark mb-6">
+              Gatsby Source <span className="text-primary">Hubspot Node Plugin v1.0.1</span>
             </p>
-            <p>{repo.description}</p>
+            <p className="text-xl text-gray-80">{repo.description}</p>
           </div>
 
-          <AppCard className="p-4 mt-10 mb-10">
-            <ul className="flex items-center justify-around flex-wrap bg-brand-dgray rounded-md px-6 py-4 gap-4 md:gap-0">
+          <AppCard className="p-4 mt-10 mb-10 bg-white shadow-2xl">
+            <ul className="flex items-center justify-around flex-wrap bg-brand-dgray shadow-sm rounded-md px-6 py-4 gap-4 md:gap-0">
               <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
                 <div>
-                  <p className="font-bold text-lg text-primary">1.0.1</p>
+                  <p className="font-bold text-lg text-dark">1.0.1</p>
                   <p className="font-medium text-xs text-primary/75">Version</p>
                 </div>
               </li>
               <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
                 <div>
-                  <p className="font-bold text-lg text-primary">{repo.license.name}</p>
+                  <p className="font-bold text-lg text-dark">{repo.license.name}</p>
                   <p className="font-medium text-xs text-primary/75">License</p>
                 </div>
               </li>
               <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
                 <div>
-                  <p className="font-bold text-lg text-primary">{repo.stargazers_count}</p>
+                  <p className="font-bold text-lg text-dark">{repo.stargazers_count}</p>
                   <p className="font-medium text-xs text-primary/75">Stars 🌟</p>
                 </div>
               </li>
               <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
                 <div>
-                  <p className="font-bold text-lg text-primary">{repo.open_issues}</p>
+                  <p className="font-bold text-lg text-dark">{repo.open_issues}</p>
                   <p className="font-medium text-xs text-primary/75">Open Issues</p>
                 </div>
               </li>
               <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
                 <div>
-                  <p className="font-bold text-lg text-primary">{repo.forks_count}</p>
+                  <p className="font-bold text-lg text-dark">{repo.forks_count}</p>
                   <p className="font-medium text-xs text-primary/75">Forks</p>
                 </div>
               </li>

@@ -4,7 +4,7 @@
 
 @layer utilities {
   body {
-    @apply text-primary;
+    @apply text-gray-80;
   }
   .animate__animated {
     animation-duration: 0.33s;

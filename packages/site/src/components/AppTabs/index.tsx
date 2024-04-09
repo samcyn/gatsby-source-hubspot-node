@@ -53,7 +53,7 @@ const AppTabs = ({ children }: Props) => {
             <button
               className={`
                 px-2 py-2.5 flex items-center 
-                justify-center w-full h-full text-primary
+                justify-center w-full h-full text-dark
                 text-sm relative before:transition before:absolute 
                 before:bottom-0 before:left-0 
                 before:right-0 before:contents-[''] 
