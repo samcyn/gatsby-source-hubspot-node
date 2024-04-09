@@ -58,7 +58,7 @@ const AppTabs = ({ children }: Props) => {
                 before:bottom-0 before:left-0 
                 before:right-0 before:contents-[''] 
                 before:w-full before:h-0.5 font-medium
-                ${activeIndex === index ? 'before:bg-blue-400 opacity-100' : 'opacity-75'}
+                ${activeIndex === index ? 'before:bg-primary opacity-100' : 'opacity-75'}
               `}
               id={`tabs_${index}`}
               aria-label={node.props.header}

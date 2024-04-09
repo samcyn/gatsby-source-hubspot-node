@@ -8,29 +8,10 @@ type MenuItemProps = {
   children?: React.ReactNode;
 };
 
-const MenuItem = ({ to, title, children }: MenuItemProps) => {
+const MenuItem = ({ to, title }: MenuItemProps) => {
   return (
-    <li>
-      <Link to={to} className="flex text-primary hover:text-primary/75 py-1 items-center gap-2">
-        {children ? (
-          children
-        ) : (
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1"
-              d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-            />
-          </svg>
-        )}
+    <li className="pb-6 last-of-type:pb-0">
+      <Link to={to} className="-ml-[22px] border-l-[1px] border-primary pl-[21px] pr-4 block h-full">
         <span className="shrink grow text-sm">{title}</span>
       </Link>
     </li>
@@ -59,40 +40,38 @@ const AppAside = () => (
     <div>
       <AppInput placeholder="Search" name="search" />
     </div>
-    <ul className="flex flex-col gap-10">
-      <li>
-        <p className="text-primary opacity-70 text-sm">Main</p>
-        <ul className="pl-3">
-          <MenuItem to="/" title="Dashboard" />
-          <MenuItem to="/" title="Dashboard">
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
+    <nav className="pl-8">
+      <ul className="flex flex-col">
+        <li className="uppercase font-medium">
+          <span className="-ml-8 pt-1 pb-2 w-8 align-middle inline-flex place-content-center text-gray-60">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                <path d="M1.5 6C1.5 4.4 2.9 3 4.5 3V3C6.15685 3 7.5 4.34315 7.5 6V8H1.5V6Z"></path>
+                <path d="M4.5 3H16.5C18.1 3 19.5 4.4 19.5 6V17"></path>
+                <path d="M10.5 21C8.8 21 7.5 19.6 7.5 18V6C7.5 4.4 6.1 3 4.5 3"></path>
+                <path d="M10.5 21H19.5C21.1 21 22.5 19.6 22.5 18V17H13.5V18C13.5 19.6 12.1 21 10.5 21Z"></path>
+                <path d="M10.5 11.8281C10.5 11.8281 11.625 13.3281 13.5 13.3281C15.375 13.3281 16.5 11.8281 16.5 11.8281"></path>
+                <path d="M11.5 7.82812H11.51"></path>
+                <path d="M15.5 7.82812H15.51"></path>
+              </g>
               <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.1"
-                d="M10 3v4a1 1 0 0 1-1 1H5m5 4-2 2 2 2m4-4 2 2-2 2m5-12v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"
-              />
+                d="M15.7012 8.59961C16.2535 8.59961 16.7012 8.15189 16.7012 7.59961C16.7012 7.04732 16.2535 6.59961 15.7012 6.59961C15.1489 6.59961 14.7012 7.04732 14.7012 7.59961C14.7012 8.15189 15.1489 8.59961 15.7012 8.59961Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M11.5 8.59961C12.0523 8.59961 12.5 8.15189 12.5 7.59961C12.5 7.04732 12.0523 6.59961 11.5 6.59961C10.9477 6.59961 10.5 7.04732 10.5 7.59961C10.5 8.15189 10.9477 8.59961 11.5 8.59961Z"
+                fill="currentColor"
+              ></path>
             </svg>
-          </MenuItem>
-          <MenuItem to="/" title="Dashboard" />
-        </ul>
-      </li>
-      <li>
-        <p className="text-primary opacity-70 text-sm">Other</p>
-        <ul className="pl-3">
-          <MenuItem to="/" title="Dashboard" />
-          <MenuItem to="/" title="Dashboard" />
-          <MenuItem to="/" title="Dashboard" />
-        </ul>
-      </li>
-    </ul>
+          </span>
+          <span>Main</span>
+          <ul className="relative mt-3 -ml-[22px] pl-[21px] border-l-[1px] border-gray-30">
+            <MenuItem to="/" title="Dashboard" />
+            <MenuItem to="/" title="Dashboard" />
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </aside>
 );
 
