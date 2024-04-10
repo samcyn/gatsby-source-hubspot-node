@@ -74,7 +74,6 @@ describe(`utils`, () => {
           },
           "mimeType": "image/jpg",
           "parent": null,
-          "placeholderUrl": "undefined&w=%width%&h=%height%",
           "url": undefined,
           "width": undefined,
         }
@@ -100,7 +99,6 @@ describe(`utils`, () => {
           },
           "mimeType": "image/jpg",
           "parent": null,
-          "placeholderUrl": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg&w=%width%&h=%height%",
           "url": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg",
           "width": 3024,
         }

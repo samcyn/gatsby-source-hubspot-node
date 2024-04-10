@@ -120,7 +120,7 @@ export function createAssetNode(gatsbyApi: SourceNodesArgs, data: IPostImageInpu
     filename: data.url,
     width: data.width,
     height: data.height,
-    placeholderUrl: `${data.url}&w=%width%&h=%height%`,
+    // placeholderUrl: `${data.url}&w=%width%&h=%height%`,
     alt: data.alt,
     parent: null,
     children: [],
