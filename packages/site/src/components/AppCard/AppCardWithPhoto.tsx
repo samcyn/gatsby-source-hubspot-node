@@ -14,9 +14,12 @@ type Props = {
   readonly featured_image: {
     readonly gatsbyImage: IGatsbyImageData;
   };
+  readonly blog_author: {
+    readonly avatar: string;
+  };
 };
 
-const AppCardWithPhoto = ({ author_name, title, featured_image }: Props) => (
+const AppCardWithPhoto = ({ author_name, title, featured_image, blog_author }: Props) => (
   <AppCard className="bg-white shadow-md hover:shadow-lg transition overflow-hidden rounded-lg group">
     <Link to="/" className="block w-full no-underline">
       <figure className="w-full h-[165px] overflow-hidden">
@@ -34,8 +37,8 @@ const AppCardWithPhoto = ({ author_name, title, featured_image }: Props) => (
           <small>5 min</small>
         </div>
         <div className="flex items-center gap-2">
-          <figure className="w-10 h-10 rounded-full overflow-hidden">
-            <AppImage className="w-full h-full" alt="sr" image={featured_image?.gatsbyImage} />
+          <figure className="w-10 h-10 rounded-full shadow-lg overflow-hidden">
+            <img className="w-full h-full" alt={`${author_name} photo`} src={blog_author?.avatar} />
           </figure>
           <div className="flex flex-col justify-between">
             <p className="text-gray-80 text-sm">{author_name}</p>

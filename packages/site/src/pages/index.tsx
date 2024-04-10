@@ -16,41 +16,41 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
 }) => {
   return (
     <>
-      <div className="mt-10 max-w-[656px]">
-        <p className="text-2xl md:text-5xl font-bold text-dark dark:text-dark mb-6">
+      <div className="mt-10 md:max-w-[500px] lg:max-w-[656px]">
+        <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-dark dark:text-dark mb-6">
           Gatsby Source <span className="text-primary">Hubspot Node Plugin v1.0.1</span>
         </p>
-        <p className="text-xl text-gray-80">{repo.description}</p>
+        <p className="text-sm md:text-xl text-gray-80">{repo.description}</p>
       </div>
 
       <AppCard className="p-4 mt-10 mb-10 bg-white shadow-2xl">
-        <ul className="flex items-center justify-around flex-wrap bg-brand-dgray shadow-sm rounded-md px-6 py-4 gap-4 md:gap-0">
+        <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 place-content-between md:place-items-center bg-brand-dgray shadow-sm rounded-md px-6 py-4 gap-4">
           <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
-            <div>
+            <div className="text-center">
               <p className="font-bold text-lg text-dark">1.0.1</p>
               <p className="font-medium text-xs text-primary/75">Version</p>
             </div>
           </li>
           <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
-            <div>
+            <div className="text-center">
               <p className="font-bold text-lg text-dark">{repo.license.name}</p>
               <p className="font-medium text-xs text-primary/75">License</p>
             </div>
           </li>
           <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
-            <div>
+            <div className="text-center">
               <p className="font-bold text-lg text-dark">{repo.stargazers_count}</p>
               <p className="font-medium text-xs text-primary/75">Stars 🌟</p>
             </div>
           </li>
           <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
-            <div>
+            <div className="text-center">
               <p className="font-bold text-lg text-dark">{repo.open_issues}</p>
               <p className="font-medium text-xs text-primary/75">Open Issues</p>
             </div>
           </li>
           <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
-            <div>
+            <div className="text-center">
               <p className="font-bold text-lg text-dark">{repo.forks_count}</p>
               <p className="font-medium text-xs text-primary/75">Forks</p>
             </div>
@@ -60,14 +60,14 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
       </AppCard>
       <AppTabs>
         <AppTab header="Post">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {posts.map((post) => (
               <AppCardWithPhoto key={post.id} {...post}></AppCardWithPhoto>
             ))}
           </div>
         </AppTab>
         <AppTab header="Contacts">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {contacts.map((contact) => (
               <AppCardWithContact key={contact.id} {...contact} />
             ))}
