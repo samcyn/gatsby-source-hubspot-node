@@ -137,3 +137,13 @@ export function createAssetNode(gatsbyApi: SourceNodesArgs, data: IPostImageInpu
    */
   return id;
 }
+
+export function wrapWithAsterisks(message: string) {
+  function createAsteriskLine(length: number) {
+    return '*'.repeat(length);
+  }
+
+  const asteriskLine = createAsteriskLine(message.length / 2);
+
+  return `${asteriskLine}*\n\n* ${message} *\n\n${asteriskLine}******`;
+}
