@@ -31,14 +31,14 @@ export async function fetchRequest<T = IPostInput>(
     url += hasQueryParams ? `&${params.toString()}` : `?${params.toString()}`;
   }
 
-  const { headers, method, ...rest } = requestOptions;
+  const { headers = {}, method = 'GET', ...rest } = requestOptions || {};
+
+  // Merge headers with defaultHeaders
+  const mergedHeaders = { ...defaultHeaders, ...headers };
 
   const response = await fetch(url, {
-    method: method || 'GET',
-    headers: {
-      ...defaultHeaders,
-      ...headers,
-    },
+    method,
+    headers: mergedHeaders,
     ...rest,
   });
 
