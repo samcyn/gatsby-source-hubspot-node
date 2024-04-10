@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import AppThemeSwitcher from '@components/AppThemeSwitcher';
 import AppIcon from '@components/AppIcon';
 
