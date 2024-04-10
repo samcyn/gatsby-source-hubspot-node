@@ -76,7 +76,7 @@ const AppAside = () => (
               title: 'Overview',
             },
             {
-              to: '/dashboard',
+              to: '/dashboard/',
               title: 'Dashboard',
             },
           ]}
