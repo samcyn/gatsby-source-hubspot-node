@@ -31,14 +31,14 @@ export async function fetchRequest<T = IPostInput>(
     url += hasQueryParams ? `&${params.toString()}` : `?${params.toString()}`;
   }
 
-  const { headers, method, ...rest } = requestOptions;
+  const { headers = {}, method = 'GET', ...rest } = requestOptions || {};
+
+  // Merge headers with defaultHeaders
+  const mergedHeaders = { ...defaultHeaders, ...headers };
 
   const response = await fetch(url, {
-    method: method || 'GET',
-    headers: {
-      ...defaultHeaders,
-      ...headers,
-    },
+    method,
+    headers: mergedHeaders,
     ...rest,
   });
 
@@ -120,7 +120,7 @@ export function createAssetNode(gatsbyApi: SourceNodesArgs, data: IPostImageInpu
     filename: data.url,
     width: data.width,
     height: data.height,
-    placeholderUrl: `${data.url}&w=%width%&h=%height%`,
+    // placeholderUrl: `${data.url}&w=%width%&h=%height%`,
     alt: data.alt,
     parent: null,
     children: [],
