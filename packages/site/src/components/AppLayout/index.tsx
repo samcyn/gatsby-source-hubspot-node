@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import AppAside from '@components/AppAside';
 import AppHeader from '@components/AppHeader';
 import ThemeProvider from '../../providers/theme';
+import AppFooter from '@components/AppFooter';
 
 // tailwind css
 import '../../styles/global.css';
@@ -15,11 +16,11 @@ const AppLayout = ({ element }: { element: ReactElement }) => {
   };
   return (
     <ThemeProvider>
-      <main className="bg-white min-h-screen overflow-hidden max-w-screen-2xl xl:px-12 mx-auto">
+      <main className="bg-white dark:bg-dark transition-colors min-h-screen overflow-hidden max-w-screen-2xl xl:px-12 mx-auto">
         <AppAside />
         <section
           className={`
-        w-full min-h-screen bg-white 
+        w-full min-h-screen bg-white dark:bg-dark
         relative z-10 lg:z-0 lg:pl-60 transition
         ${open ? 'translate-x-60 lg:translate-x-0' : 'translate-x-0'}
       `}
@@ -29,6 +30,7 @@ const AppLayout = ({ element }: { element: ReactElement }) => {
           <section className="px-4 md:px-12 lg:px-25">
             <AppHeader onOpen={onOpen} />
             {element}
+            <AppFooter />
           </section>
         </section>
       </main>

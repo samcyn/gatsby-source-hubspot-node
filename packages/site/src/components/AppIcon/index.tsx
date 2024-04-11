@@ -42,6 +42,28 @@ const Icons_library = {
     />
   ),
   hamburger: <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.1" d="M5 7h14M5 12h14M5 17h14" />,
+  linkedin: (
+    <>
+      <path
+        fillRule="evenodd"
+        d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z"
+        clipRule="evenodd"
+      />
+      <path d="M7.2 8.809H4V19.5h3.2V8.809Z" />
+    </>
+  ),
+  twitter: (
+    <path d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z" />
+  ),
+  link: (
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1"
+      d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961"
+    />
+  ),
 };
 
 export type Props = {
@@ -52,7 +74,7 @@ export type Props = {
   viewBox?: string;
 };
 
-const AppIcon = ({ icon, width = '24', height = '24', fill = 'none', viewBox = '0 0 24 24' }: Props) => {
+const AppIcon = ({ icon, width = '24', height = '24', fill = 'currentColor', viewBox = '0 0 24 24' }: Props) => {
   return (
     <svg
       aria-hidden="true"

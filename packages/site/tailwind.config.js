@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'selector',
   content: [`./src/pages/**/*.{js,jsx,ts,tsx}`, `./src/components/**/*.{js,jsx,ts,tsx}`],
   theme: {
     extend: {
@@ -21,6 +22,7 @@ module.exports = {
         'gray-80': '#36313d',
         'gray-5': '#fbfbfb',
         'gray-30': '#d9d7e0',
+        'gray-1': '#f0f0f2',
       },
     },
   },

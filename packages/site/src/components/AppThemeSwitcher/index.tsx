@@ -9,7 +9,7 @@ const AppThemeSwitcher = () => {
   return (
     <button
       aria-label="switcher"
-      className="flex items-center justify-center text-gray-60 dark:text-gray-60 hover:text-primary"
+      className="flex items-center justify-center text-gray-60 dark:text-gray-50 hover:text-primary"
       onClick={onChangeMode}
     >
       {mode === 'light' ? <AppIcon icon="sun" fill="currentColor" /> : <AppIcon icon="moon" fill="currentColor" />}

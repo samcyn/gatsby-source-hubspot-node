@@ -9,6 +9,7 @@ export default IndexPage;
 
 export const Head: HeadFC = () => (
   <>
+    <html lang="en" />
     <title>Home Page</title>
     <meta name="author" content="Samson Iyanda"></meta>
     <meta name="description" content="site for gatsby source hubspot plugin documentation"></meta>
