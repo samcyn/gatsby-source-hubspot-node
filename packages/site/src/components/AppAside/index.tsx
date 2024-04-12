@@ -24,7 +24,7 @@ type ListItemProps = {
 const ListItem = ({ title, nodes, icon, root }: ListItemProps) => (
   <li className="flex items-center flex-wrap text-gray-60 dark:text-gray-50">
     <span className="-ml-8 w-8 inline-flex items-center">
-      <AppIcon icon={icon} />
+      <AppIcon fill="none" icon={icon} />
     </span>
     <span className="uppercase text-sm font-medium">{title}</span>
     <ul className="basis-full relative mt-3 -ml-[22px] pl-[21px] border-l-[1px] border-gray-30 dark:border-gray-50">
@@ -109,7 +109,7 @@ const AppAside = () => {
             ]}
             root
           />
-          <ListItem title="Docs" icon="grid" nodes={data.allMdx.nodes} />
+          <ListItem title="Use Cases" icon="layers" nodes={data.allMdx.nodes} />
         </ul>
       </nav>
     </aside>
