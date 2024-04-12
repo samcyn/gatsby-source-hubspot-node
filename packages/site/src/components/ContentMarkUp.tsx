@@ -21,7 +21,9 @@ const ContentMarkUp = ({ title, tail, summary, contents, children }: Props) => {
       </div>
       <div className="flex flex-col lg:flex-row items-start gap-16 w-full">
         {contents.length > 0 ? <AppTableOfContents contents={contents} /> : null}
-        <div className="overflow-hidden w-full">{children}</div>
+        <div className="overflow-hidden w-full" id="mdxProviderId">
+          {children}
+        </div>
       </div>
     </>
   );
