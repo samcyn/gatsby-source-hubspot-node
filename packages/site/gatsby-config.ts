@@ -45,6 +45,14 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'mdx',
+        path: './src/docs/',
+      },
+      __key: 'mdx',
+    },
+    {
       // using hubspot version 2. this is the default
       resolve: 'gatsby-source-hubspot-node',
       options: {

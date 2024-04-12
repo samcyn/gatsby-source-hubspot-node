@@ -16,7 +16,7 @@ const AppLayout = ({ element }: { element: ReactElement }) => {
   };
   return (
     <ThemeProvider>
-      <main className="bg-white dark:bg-dark transition-colors min-h-screen overflow-hidden max-w-screen-2xl xl:px-12 mx-auto">
+      <main className="bg-white dark:bg-dark transition-colors min-h-screen overflow-hidden lg:overflow-visible max-w-screen-2xl xl:px-12 mx-auto">
         <AppAside />
         <section
           className={`

@@ -7,7 +7,7 @@ import AppTabs, { AppTab } from '@components/AppTabs';
 import AppCardWithPhoto from '@components/AppCard/AppCardWithPhoto';
 import AppCardWithContact from '@components/AppCard/AppCardWithContact';
 
-const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
+const DashboardPage: React.FC<PageProps<Queries.DashboardPageQuery>> = ({
   data: {
     allPost: { nodes: posts },
     allContact: { nodes: contacts },
@@ -77,7 +77,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({
   );
 };
 
-export default IndexPage;
+export default DashboardPage;
 
 export const Head: HeadFC = () => (
   <>
@@ -90,7 +90,7 @@ export const Head: HeadFC = () => (
 );
 
 export const query = graphql`
-  query IndexPage {
+  query DashboardPage {
     repository(name: { eq: "gatsby-source-hubspot-node" }) {
       description
       forks_count
