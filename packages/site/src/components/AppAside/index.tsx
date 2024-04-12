@@ -102,8 +102,8 @@ const AppAside = () => {
               },
               {
                 frontmatter: {
-                  slug: '/dashboard/',
-                  title: 'Dashboard',
+                  slug: '/demo/',
+                  title: 'Demo',
                 },
               },
             ]}

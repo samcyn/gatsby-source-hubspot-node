@@ -2,8 +2,8 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import type { HeadFC, PageProps } from 'gatsby';
 
-import PageContent from '../docs/dashboard.mdx';
-import ContentMarkUp from '../templates/ContentMarkUp';
+import PageContent from '../docs/demo.mdx';
+import ContentMarkUp from '../components/ContentMarkUp';
 import { Props as TableContentProps } from '@components/AppTableOfContents';
 
 const DashboardPage: React.FC<PageProps<Queries.DashboardPageQuery>> = ({
@@ -75,7 +75,7 @@ export const query = graphql`
         }
       }
     }
-    mdx(frontmatter: { slug: { eq: "dashboard" } }) {
+    mdx(frontmatter: { slug: { eq: "demo" } }) {
       frontmatter {
         title
         tail

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import type { HeadFC, PageProps } from 'gatsby';
 
 import PageContent from '../docs/index.mdx';
-import ContentMarkUp from '../templates/ContentMarkUp';
+import ContentMarkUp from '@components/ContentMarkUp';
 import { Props as TableContentProps } from '@components/AppTableOfContents';
 
 const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
