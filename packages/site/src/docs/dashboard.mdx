@@ -1,0 +1,66 @@
+---
+title: Gatsby Source
+tail: Hubspot Node Plugin v1.0.1
+slug: dashboard
+date: 2019-01-29
+tableOfContentsDepth: 2
+---
+
+import AppCard from '@components/AppCard';
+import AppTabs, { AppTab } from '@components/AppTabs';
+import AppCardWithPhoto from '@components/AppCard/AppCardWithPhoto';
+import AppCardWithContact from '@components/AppCard/AppCardWithContact';
+
+<AppCard className="p-4 mb-10 bg-white dark:bg-gray-80 shadow">
+  <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 place-content-between md:place-items-center bg-brand-dgray dark:bg-dark shadow-sm rounded-md px-6 py-4 gap-4">
+    <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
+      <div className="text-center">
+        <p className="font-bold text-lg text-dark dark:text-gray-50">1.0.1</p>
+        <p className="font-medium text-xs text-primary dark:text-gray-50">Version</p>
+      </div>
+    </li>
+    <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
+      <div className="text-center">
+        <p className="font-bold text-lg text-dark dark:text-gray-50">{props.repo.license.name}</p>
+        <p className="font-medium text-xs text-primary dark:text-gray-50">License</p>
+      </div>
+    </li>
+    <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
+      <div className="text-center">
+        <p className="font-bold text-lg text-dark dark:text-gray-50">{props.repo.stargazers_count}</p>
+        <p className="font-medium text-xs text-primary dark:text-gray-50">Stars 🌟</p>
+      </div>
+    </li>
+    <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
+      <div className="text-center">
+        <p className="font-bold text-lg text-dark dark:text-gray-50">{props.repo.open_issues}</p>
+        <p className="font-medium text-xs text-primary dark:text-gray-50">Open Issues</p>
+      </div>
+    </li>
+    <li className="flex justify-center md:justify-normal basis-full md:basis-auto">
+      <div className="text-center">
+        <p className="font-bold text-lg text-dark dark:text-gray-50">{props.repo.forks_count}</p>
+        <p className="font-medium text-xs text-primary dark:text-gray-50">Forks</p>
+      </div>
+    </li>
+  </ul>
+</AppCard>
+<AppTabs>
+  <AppTab header="Post">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pb-4 md:pb-6">
+      {props.posts.map((post) => (
+        <AppCardWithPhoto key={post.id} {...post}></AppCardWithPhoto>
+      ))}
+    </div>
+  </AppTab>
+  <AppTab header="Contacts">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {props.contacts.map((contact) => (
+        <AppCardWithContact key={contact.id} {...contact} />
+      ))}
+    </div>
+  </AppTab>
+</AppTabs>
+   
+
+

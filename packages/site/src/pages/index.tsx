@@ -1,29 +1,19 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import type { HeadFC, PageProps } from 'gatsby';
-import { MDXProvider } from '@mdx-js/react';
 
 import PageContent from '../docs/index.mdx';
-import AppTableOfContents, { Props as TableContentProps } from '@components/AppTableOfContents';
-
-const shortcodes = { Link };
+import ContentMarkUp from '../templates/ContentMarkUp';
+import { Props as TableContentProps } from '@components/AppTableOfContents';
 
 const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
   const { frontmatter, tableOfContents } = data.mdx;
 
   const contents = tableOfContents.items as TableContentProps['contents'];
   return (
-    <>
-      <h1 className="text-dark text-4xl mt-[60px] mb-6 font-bold">{frontmatter.title}</h1>
-      <div className="flex flex-col lg:flex-row items-start gap-16 w-full">
-        <AppTableOfContents contents={contents} />
-        <div className="overflow-hidden w-full">
-          <MDXProvider components={shortcodes}>
-            <PageContent />
-          </MDXProvider>
-        </div>
-      </div>
-    </>
+    <ContentMarkUp title={frontmatter.title} tail={frontmatter.tail} contents={contents} summary={frontmatter.summary}>
+      <PageContent />
+    </ContentMarkUp>
   );
 };
 
@@ -32,7 +22,9 @@ export const query = graphql`
     mdx(frontmatter: { slug: { eq: "hello-world" } }) {
       frontmatter {
         title
+        tail
         slug
+        summary
         date(fromNow: false)
         tableOfContentsDepth
       }

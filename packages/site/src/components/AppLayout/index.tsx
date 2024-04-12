@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react';
+import { MDXProvider } from '@mdx-js/react';
+import { Link } from 'gatsby';
 
 import AppAside from '@components/AppAside';
 import AppHeader from '@components/AppHeader';
@@ -7,6 +9,8 @@ import AppFooter from '@components/AppFooter';
 
 // tailwind css
 import '../../styles/global.css';
+
+const shortcodes = { Link };
 
 const AppLayout = ({ element }: { element: ReactElement }) => {
   const [open, setOpen] = React.useState(false);
@@ -29,7 +33,7 @@ const AppLayout = ({ element }: { element: ReactElement }) => {
           {open && <div onClick={onOpen} className="fixed lg:hidden inset-0 bg-white/25"></div>}
           <section className="px-4 md:px-12 lg:px-25">
             <AppHeader onOpen={onOpen} />
-            {element}
+            <MDXProvider components={shortcodes}>{element}</MDXProvider>
             <AppFooter />
           </section>
         </section>

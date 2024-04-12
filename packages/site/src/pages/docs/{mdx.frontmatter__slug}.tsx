@@ -1,10 +1,9 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import type { HeadFC, PageProps } from 'gatsby';
-import { MDXProvider } from '@mdx-js/react';
-import AppTableOfContents, { Props as TableContentProps } from '@components/AppTableOfContents';
 
-const shortcodes = { Link };
+import { Props as TableContentProps } from '@components/AppTableOfContents';
+import ContentMarkUp from '../../templates/ContentMarkUp';
 
 const DocPage: React.FC<PageProps<Queries.DocPageQuery>> = ({ data, children }) => {
   const { frontmatter, tableOfContents } = data.mdx;
@@ -12,15 +11,9 @@ const DocPage: React.FC<PageProps<Queries.DocPageQuery>> = ({ data, children }) 
   const contents = tableOfContents.items as TableContentProps['contents'];
 
   return (
-    <>
-      <h1 className="text-dark text-4xl mt-[60px] mb-6 font-bold">{frontmatter.title}</h1>
-      <div className="flex flex-col lg:flex-row items-start gap-16">
-        <AppTableOfContents contents={contents} />
-        <div className="overflow-hidden w-full">
-          <MDXProvider components={shortcodes}>{children}</MDXProvider>
-        </div>
-      </div>
-    </>
+    <ContentMarkUp title={frontmatter.title} tail={frontmatter.tail} contents={contents} summary={frontmatter.summary}>
+      {children}
+    </ContentMarkUp>
   );
 };
 
@@ -29,6 +22,8 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+        tail
+        summary
         date(formatString: "MMMM D, YYYY")
       }
       tableOfContents
