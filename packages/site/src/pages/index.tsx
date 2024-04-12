@@ -3,14 +3,13 @@ import { graphql, Link } from 'gatsby';
 import type { HeadFC, PageProps } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 
+import PageContent from '../docs/index.mdx';
 import AppTableOfContents, { Props as TableContentProps } from '@components/AppTableOfContents';
 
 const shortcodes = { Link };
 
-const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data, children }) => {
-  console.log(children, 3444);
-
-  const { frontmatter, tableOfContents, body } = data.mdx;
+const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
+  const { frontmatter, tableOfContents } = data.mdx;
 
   const contents = tableOfContents.items as TableContentProps['contents'];
   return (
@@ -19,7 +18,9 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data, children
       <div className="flex flex-col lg:flex-row items-start gap-16 w-full">
         <AppTableOfContents contents={contents} />
         <div className="overflow-hidden w-full">
-          <MDXProvider components={shortcodes}>{body}</MDXProvider>
+          <MDXProvider components={shortcodes}>
+            <PageContent />
+          </MDXProvider>
         </div>
       </div>
     </>
@@ -36,7 +37,6 @@ export const query = graphql`
         tableOfContentsDepth
       }
       tableOfContents
-      body
     }
   }
 `;
