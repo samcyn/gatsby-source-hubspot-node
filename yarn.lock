@@ -10209,7 +10209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-hubspot-node@workspace:packages/plugin":
+"gatsby-source-hubspot-node@workspace:^, gatsby-source-hubspot-node@workspace:packages/plugin":
   version: 0.0.0-use.local
   resolution: "gatsby-source-hubspot-node@workspace:packages/plugin"
   dependencies:
@@ -18627,6 +18627,7 @@ __metadata:
     gatsby-remark-images: ^7.13.1
     gatsby-remark-responsive-iframe: ^6.13.1
     gatsby-source-filesystem: ^5.13.1
+    gatsby-source-hubspot-node: "workspace:^"
     gatsby-transformer-remark: ^6.13.1
     gatsby-transformer-sharp: ^5.13.1
     postcss: ^8.4.38
