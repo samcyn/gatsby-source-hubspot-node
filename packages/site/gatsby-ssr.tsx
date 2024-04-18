@@ -1,1 +1,4 @@
-export { default as wrapPageElement } from './src/components/AppLayout';
+/* eslint-disable @typescript-eslint/naming-convention */
+import LayoutComponent from './wrapPageElement';
+
+export const wrapPageElement = LayoutComponent;
