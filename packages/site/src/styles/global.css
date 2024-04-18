@@ -74,4 +74,18 @@
   .gatsby-highlight pre code {
     @apply block px-6 text-[13px] leading-5 min-w-full float-left;
   }
+
+  .announcement h1,
+  .announcement h2,
+  .announcement h3,
+  .announcement h4,
+  .announcement h5,
+  .announcement h6 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  
+  .announcement p {
+    @apply last-of-type:mb-0;
+  }
 }

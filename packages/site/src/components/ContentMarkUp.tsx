@@ -13,7 +13,7 @@ type Props = {
 const ContentMarkUp = ({ title, tail, summary, contents, children }: Props) => {
   return (
     <>
-      <div className="mt-6 md:mt-16 md:max-w-[500px] lg:max-w-[656px] mb-10">
+      <div className="mt-6 md:mt-16 md:max-w-[500px] lg:max-w-[656px] mb-10 px-6">
         <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-dark dark:text-white mb-6">
           {title} {tail && <span className="text-primary">{tail}</span>}
         </p>
@@ -21,7 +21,7 @@ const ContentMarkUp = ({ title, tail, summary, contents, children }: Props) => {
       </div>
       <div className="flex flex-col lg:flex-row items-start gap-16 w-full">
         {contents.length > 0 ? <AppTableOfContents contents={contents} /> : null}
-        <div className="overflow-hidden w-full" id="mdxProviderId">
+        <div className="overflow-hidden w-full pl-6" id="mdxProviderId">
           {children}
         </div>
       </div>

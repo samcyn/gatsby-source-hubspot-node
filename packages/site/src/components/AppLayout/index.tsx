@@ -29,7 +29,7 @@ const AppLayout = ({ element }: { element: ReactElement }) => {
         >
           {/* overlay */}
           {open && <div onClick={onOpen} className="fixed lg:hidden inset-0 bg-white/25"></div>}
-          <section className="px-4 md:px-12 lg:px-25">
+          <section className="px-4 md:px-12 lg:px-19">
             <AppHeader onOpen={onOpen} />
             <MDXProvider components={shortcodes}>{element}</MDXProvider>
             <AppFooter />

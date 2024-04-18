@@ -47,7 +47,7 @@ const AppTableOfContents = ({ contents }: Props) => {
     };
   }, []);
   return (
-    <div className="md:shrink-0 md:order-2 sticky top-20 max-h-100 overflow-y-auto">
+    <div className="md:shrink-0 md:order-2 pr-6 sticky top-20 max-h-100 overflow-y-auto">
       <nav className="md:px-8">
         <p className="text-gray-60 dark:text-gray-50 uppercase font-bold text-sm mb-6">Table of content</p>
         <ul className="flex flex-col gap-3">

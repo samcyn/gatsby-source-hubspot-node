@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       spacing: {
         13: '56px',
+        19: '76px',
         25: '100px',
         30: '120px',
         50: '200px',
@@ -26,6 +27,7 @@ module.exports = {
         'orange-50': '#fdfaf6',
         'orange-30': '#faede5',
         'orange-40': '#866c5b',
+        'purple-20': '#d9bae8',
       },
     },
   },

@@ -6,7 +6,7 @@ import AppIcon from '@components/AppIcon';
 const AppHeader = ({ onOpen }: { onOpen: () => void }) => {
   return (
     <header>
-      <nav className="flex items-center justify-between py-4">
+      <nav className="flex items-center justify-between py-4 px-6">
         <button aria-label="toggle menu" className="text-gray-80 dark:text-gray-50 text-4xl lg:hidden" onClick={onOpen}>
           <AppIcon icon="hamburger" aria-hidden="true" width="1em" height="1em" fill="none" viewBox="0 0 24 24" />
         </button>

@@ -1,25 +1,16 @@
-// import type { GatsbyConfig, NodeInput } from 'gatsby';
-// import type { IPluginOptions } from 'gatsby-source-hubspot-node';
-// import remarkGfm from 'remark-gfm';
-// import remarkExternalLinks from 'remark-external-links';
-// import rehypeSlug from 'rehype-slug';
-// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import type { GatsbyConfig, NodeInput } from 'gatsby';
+import type { IPluginOptions } from 'gatsby-source-hubspot-node';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import dotenv from 'dotenv';
-
-dotenv.config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const config = {
+const config: GatsbyConfig = {
   siteMetadata: {
     title: `site`,
     siteUrl: `https://www.samsoniyanda.com`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-postcss',
@@ -106,11 +97,11 @@ const config = {
                 type: input.type,
                 contentDigest: gatsbyApi.createContentDigest(input.data),
               },
-            };
+            } as NodeInput;
             gatsbyApi.actions.createNode(node);
           },
         },
-      },
+      } satisfies IPluginOptions,
     },
     {
       // contact api
@@ -141,11 +132,11 @@ const config = {
                 type: input.type,
                 contentDigest: gatsbyApi.createContentDigest(input.data),
               },
-            };
+            } as NodeInput;
             gatsbyApi.actions.createNode(node);
           },
         },
-      },
+      } satisfies IPluginOptions,
     },
     {
       resolve: 'gatsby-source-hubspot-node',
@@ -172,11 +163,11 @@ const config = {
                 type: input.type,
                 contentDigest: gatsbyApi.createContentDigest(input.data),
               },
-            };
+            } as NodeInput;
             gatsbyApi.actions.createNode(node);
           },
         },
-      },
+      } satisfies IPluginOptions,
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -197,10 +188,6 @@ const config = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-autolink-headers`,
-          `gatsby-remark-prismjs-copy-button`,
-          `gatsby-remark-prismjs`,
         ],
       },
     },
