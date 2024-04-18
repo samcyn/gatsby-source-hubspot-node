@@ -1,5 +1,6 @@
 import type { GatsbyNode } from 'gatsby';
 import { ERROR_CODES } from './constants';
+import { wrapWithAsterisks } from './utils';
 
 /**
  * Use the onPluginInit API to set up things that should be run before the plugin is initialized.
@@ -10,7 +11,10 @@ import { ERROR_CODES } from './constants';
  * @see https://www.gatsbyjs.com/docs/reference/config-files/node-api-helpers/#reporter
  */
 export const onPluginInit: GatsbyNode['onPluginInit'] = ({ reporter }) => {
-  reporter.info('Ye! Hubspot Blog Plugin Initialized. Check ReadMe.MD file for documentations');
+  const info = `Hey, thanks for considering installing "gatsby-source-hubspot-node",
+  for documentation see https://github.com/samcyn/gatsby-source-hubspot-node`;
+
+  reporter.info(wrapWithAsterisks(info));
   reporter.setErrorMap({
     [ERROR_CODES.HubspotSourcing]: {
       text: (context) => `${context.sourceMessage}: ${context.errorCode}`,

@@ -88,7 +88,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: [`packages/site/src/pages/*.tsx`],
+      files: [`packages/site/src/**/*.tsx`],
       rules: {
         '@typescript-eslint/naming-convention': 0,
       },
