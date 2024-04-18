@@ -33,7 +33,7 @@
     "serve:site": "yarn workspace site serve",
     "lint": "eslint . --ext .ts,.tsx,.js",
     "lint:fix": "yarn lint --fix",
-    "clean:plugin": "yarn workspace plugin clean",
+    "clean:plugin": "yarn workspace gatsby-source-hubspot-node clean",
     "clean:site": "yarn workspace site clean",
     "clean": "npm-run-all -p 'clean:*'",
     "husky": "husky",

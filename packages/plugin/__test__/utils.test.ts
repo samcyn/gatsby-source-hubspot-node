@@ -74,7 +74,6 @@ describe(`utils`, () => {
           },
           "mimeType": "image/jpg",
           "parent": null,
-          "placeholderUrl": "undefined&w=%width%&h=%height%",
           "url": undefined,
           "width": undefined,
         }
@@ -100,7 +99,6 @@ describe(`utils`, () => {
           },
           "mimeType": "image/jpg",
           "parent": null,
-          "placeholderUrl": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg&w=%width%&h=%height%",
           "url": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg",
           "width": 3024,
         }
@@ -150,20 +148,6 @@ describe(`utils`, () => {
       expect(response.data).toBe('successful');
     });
   });
-
-  // it('should format URL correctly when endpoint already contains query parameters', async () => {
-  //   const pluginOptions = {
-  //     endpoint: 'https://example.com/api?key1=value1',
-  //     requestOptions: {},
-  //     searchParams: {
-  //       param2: 'value2',
-  //     },
-  //   };
-
-  //   await fetchRequest(pluginOptions);
-
-  //   expect.deepEqual(fetch.mock.calls[0], ['https://example.com/api?key1=value1&param2=value2', expect.any(Object)]);
-  // });
 });
 
 // it('should use default method and headers if not provided in requestOptions', async () => {

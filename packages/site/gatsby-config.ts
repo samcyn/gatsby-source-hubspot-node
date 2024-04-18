@@ -11,9 +11,6 @@ const config: GatsbyConfig = {
     title: `site`,
     siteUrl: `https://www.samsoniyanda.com`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-postcss',
@@ -25,9 +22,11 @@ const config: GatsbyConfig = {
         icon: 'src/images/icon.png',
       },
     },
-    'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-plugin-mdx',
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -45,6 +44,14 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'mdx',
+        path: './src/docs/',
+      },
+      __key: 'mdx',
+    },
+    {
       // using hubspot version 2. this is the default
       resolve: 'gatsby-source-hubspot-node',
       options: {
@@ -57,7 +64,7 @@ const config: GatsbyConfig = {
         searchParams: {
           state: 'PUBLISHED',
         },
-      } satisfies IPluginOptions,
+      },
     },
     {
       // using hubspot version 3.
@@ -130,6 +137,63 @@ const config: GatsbyConfig = {
           },
         },
       } satisfies IPluginOptions,
+    },
+    {
+      resolve: 'gatsby-source-hubspot-node',
+      options: {
+        endpoint: 'https://api.github.com/repos/samcyn/gatsby-source-hubspot-node',
+        requestOptions: {
+          // todo take off not need in next version
+          headers: {},
+        },
+        nodeTypeOptions: {
+          nodeType: 'repository',
+          schemaCustomizationString: `
+            type Repository implements Node {
+              id: ID!
+              name: String
+              description: String
+            }
+          `,
+          apiResponseFormatter: (response) => [response],
+          nodeBuilderFormatter({ gatsbyApi, input, pluginOptions }) {
+            const id = gatsbyApi.createNodeId(`${pluginOptions.nodeType}-${input.data.id}`);
+            const node = {
+              ...input.data,
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type: input.type,
+                contentDigest: gatsbyApi.createContentDigest(input.data),
+              },
+            } as NodeInput;
+            gatsbyApi.actions.createNode(node);
+          },
+        },
+      } satisfies IPluginOptions,
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        footnotes: true,
+        gfm: true,
+        jsFrontmatterEngine: false,
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 740,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+        ],
+      },
     },
   ],
 };
