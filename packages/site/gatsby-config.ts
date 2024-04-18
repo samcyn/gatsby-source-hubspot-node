@@ -142,6 +142,10 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-hubspot-node',
       options: {
         endpoint: 'https://api.github.com/repos/samcyn/gatsby-source-hubspot-node',
+        requestOptions: {
+          // todo take off not need in next version
+          headers: {},
+        },
         nodeTypeOptions: {
           nodeType: 'repository',
           schemaCustomizationString: `
