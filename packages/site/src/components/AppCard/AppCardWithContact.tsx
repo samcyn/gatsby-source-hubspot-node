@@ -14,16 +14,16 @@ type Props = {
 };
 const AppCardWithContact = ({ properties: { firstname, lastname, email, hs_object_id } }: Props) => {
   return (
-    <AppCard className="bg-[#663399]">
+    <AppCard className="bg-primary dark:bg-gray-80">
       <Link to="/" className="block w-full no-underline">
         <div className="relative overflow-hidden">
           <div className="relative p-4 md:p-6 z-1">
             <small className="text-white opacity-40">#{hs_object_id}</small>
-            <p className="font-bold text-xl mb-2 text-white/90">Hubspot CMS Contact</p>
-            <p className="text-white/90">
+            <p className="font-bold text-xl mb-2 text-white/90 dark:text-gray-50">Hubspot CMS Contact</p>
+            <p className="text-white/90 dark:text-gray-50">
               {firstname || 'John'} {lastname || 'Doe'}
             </p>
-            <p className="text-white/90">{email}</p>
+            <p className="text-white/90 dark:text-gray-50">{email}</p>
           </div>
           <svg
             width="220"

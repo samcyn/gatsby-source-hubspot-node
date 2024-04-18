@@ -46,14 +46,14 @@ const AppTabs = ({ children }: Props) => {
           flex relative before:absolute 
           before:bottom-[0.5px] before:left-0 
           before:right-0 before:contents-[''] 
-          before:w-full before:h-[1px] before:bg-gray-300"
+          before:w-full before:h-[1px] before:bg-gray-1 dark:before:bg-gray-1/40"
       >
         {nodes.map((node, index) => (
           <li key={node.props.header}>
             <button
               className={`
                 px-2 py-2.5 flex items-center 
-                justify-center w-full h-full text-dark
+                justify-center w-full h-full text-dark dark:text-gray-50
                 text-sm relative before:transition before:absolute 
                 before:bottom-0 before:left-0 
                 before:right-0 before:contents-[''] 

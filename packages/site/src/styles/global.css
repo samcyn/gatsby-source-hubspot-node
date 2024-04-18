@@ -4,43 +4,88 @@
 
 @layer utilities {
   body {
-    @apply text-gray-80;
+    @apply text-gray-80 bg-white dark:bg-dark transition-colors;
   }
+
   .animate__animated {
     animation-duration: 0.33s;
     animation-fill-mode: both;
   }
+
   @keyframes slideInLeft {
     from {
       transform: translate3d(-100%, 0, 0);
       visibility: visible;
     }
-  
+
     to {
       transform: translate3d(0, 0, 0);
     }
   }
-  
+
   .animate__slideInLeft {
     animation-name: slideInLeft;
   }
-  
+
   @keyframes slideInRight {
     from {
       transform: translate3d(100%, 0, 0);
       visibility: visible;
     }
-  
+
     to {
       transform: translate3d(0, 0, 0);
     }
   }
-  
+
   .animate__slideInRight {
     animation-name: slideInRight;
   }
 
   .content-auto {
     content-visibility: auto;
+  }
+
+  .gatsby-highlight pre[class*="language-shell"]::before {
+    content: "shell";
+    background: #fbf2e9;
+  }
+
+  .gatsby-highlight pre[class*="language-js"]::before {
+    content: "js";
+    background: rgb(247, 223, 30);
+  }
+
+  .gatsby-highlight pre[class*="language-"]::before {
+    border-radius: 0px 0px 4px 4px;
+    color: rgba(35, 33, 41, 0.7);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    position: absolute;
+    left: 1.5rem;
+    text-align: right;
+    text-transform: uppercase;
+    top: 0px;
+  }
+
+  .gatsby-highlight pre code {
+    @apply block px-6 text-[13px] leading-5 min-w-full float-left;
+  }
+
+  .announcement h1,
+  .announcement h2,
+  .announcement h3,
+  .announcement h4,
+  .announcement h5,
+  .announcement h6 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  
+  .announcement p {
+    @apply last-of-type:mb-0;
   }
 }
