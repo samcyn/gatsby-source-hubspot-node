@@ -40,8 +40,7 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const handleStorage = () => {
       if (window) {
         const htmlElement = window.document.documentElement;
-        const theme = window.localStorage.getItem('theme');
-        // || window.matchMedia('(prefers-color-scheme: dark)').matches
+        const theme = window.localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (theme === 'dark') {
           setMode('dark');
           htmlElement.classList.add('dark');

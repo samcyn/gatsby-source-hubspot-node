@@ -21,23 +21,28 @@ type ListItemProps = {
   root?: boolean;
 };
 
-const ListItem = ({ title, nodes, icon, root }: ListItemProps) => (
-  <li className="flex items-center flex-wrap text-gray-60 dark:text-gray-50">
-    <span className="-ml-8 w-8 inline-flex items-center">
-      <AppIcon fill="none" icon={icon} />
-    </span>
-    <span className="uppercase text-sm font-medium">{title}</span>
-    <ul className="basis-full relative mt-3 -ml-[22px] pl-[21px] border-l-[1px] border-gray-30 dark:border-gray-50">
-      {nodes.map((menu) => (
-        <MenuItem
-          key={menu.frontmatter.title}
-          title={menu.frontmatter.title}
-          to={root ? menu.frontmatter.slug : `/docs/${menu.frontmatter.slug}`}
-        />
-      ))}
-    </ul>
-  </li>
-);
+const ListItem = ({ title, nodes, icon, root }: ListItemProps) => {
+  if (nodes.length === 0) {
+    return null;
+  }
+  return (
+    <li className="flex items-center flex-wrap text-gray-60 dark:text-gray-50">
+      <span className="-ml-8 w-8 inline-flex items-center">
+        <AppIcon fill="none" icon={icon} />
+      </span>
+      <span className="uppercase text-sm font-medium">{title}</span>
+      <ul className="basis-full relative mt-3 -ml-[22px] pl-[21px] border-l-[1px] border-gray-30 dark:border-gray-50">
+        {nodes.map((menu) => (
+          <MenuItem
+            key={menu.frontmatter.title}
+            title={menu.frontmatter.title}
+            to={root ? menu.frontmatter.slug : `/docs/${menu.frontmatter.slug}`}
+          />
+        ))}
+      </ul>
+    </li>
+  );
+};
 
 const MenuItem = ({ to, title }: MenuItemProps) => {
   return (
@@ -85,7 +90,8 @@ const AppAside = () => {
           </svg>
         </a>
       </div>
-      <div>
+      {/* hidden for now */}
+      <div className="hidden">
         <AppInput placeholder="Search" name="search" />
       </div>
       <nav className="pl-8 mt-10">

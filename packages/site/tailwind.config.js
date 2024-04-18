@@ -28,6 +28,7 @@ module.exports = {
         'orange-30': '#faede5',
         'orange-40': '#866c5b',
         'purple-20': '#d9bae8',
+        'black-code': '#0e0b0b',
       },
     },
   },

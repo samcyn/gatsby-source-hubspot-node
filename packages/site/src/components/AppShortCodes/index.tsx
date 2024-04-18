@@ -150,12 +150,12 @@ const MyPre = ({
   return (
     <>
       {title && (
-        <div className="rounded-t-lg pt-5 pb-4 px-6 text-xs bg-orange-50 border-b border-orange-30 text-orange-40">
+        <div className="rounded-t-lg pt-5 pb-4 px-6 text-xs bg-orange-50 dark:bg-black-code border-b border-orange-30 text-orange-40 dark:text-gray-50">
           <div>{title}</div>
         </div>
       )}
       <div
-        className={`gatsby-highlight bg-orange-50 ml-0 mr-0 relative text-gray-80 ${title ? 'rounded-b-lg' : 'rounded-lg'}`}
+        className={`gatsby-highlight bg-orange-50 dark:bg-black-code ml-0 mr-0 relative text-gray-80 dark:text-gray-50 ${title ? 'rounded-b-lg' : 'rounded-lg'}`}
       >
         <pre
           {...rest}
