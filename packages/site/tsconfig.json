@@ -18,6 +18,6 @@
       "@utils/*": ["utils/*"],
     }                                 
   },
-  "include": ["./src/**/*", "./gatsby-node.ts", "gatsby-config.mjs", "./plugins/**/*"],
+  "include": ["./src/**/*", "./gatsby-node.ts", "gatsby-config.ts", "./plugins/**/*"],
   "exclude": ["public", ".cache"]
 }

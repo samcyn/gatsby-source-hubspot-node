@@ -6506,6 +6506,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cheerio-select@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "cheerio-select@npm:2.1.0"
+  dependencies:
+    boolbase: ^1.0.0
+    css-select: ^5.1.0
+    css-what: ^6.1.0
+    domelementtype: ^2.3.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+  checksum: 843d6d479922f28a6c5342c935aff1347491156814de63c585a6eb73baf7bb4185c1b4383a1195dca0f12e3946d737c7763bcef0b9544c515d905c5c44c5308b
+  languageName: node
+  linkType: hard
+
+"cheerio@npm:^1.0.0-rc.10":
+  version: 1.0.0-rc.12
+  resolution: "cheerio@npm:1.0.0-rc.12"
+  dependencies:
+    cheerio-select: ^2.1.0
+    dom-serializer: ^2.0.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+    htmlparser2: ^8.0.1
+    parse5: ^7.0.0
+    parse5-htmlparser2-tree-adapter: ^7.0.0
+  checksum: 5d4c1b7a53cf22d3a2eddc0aff70cf23cbb30d01a4c79013e703a012475c02461aa1fcd99127e8d83a02216386ed6942b2c8103845fd0812300dd199e6e7e054
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:^3.4.2, chokidar@npm:^3.5.3":
   version: 3.6.0
   resolution: "chokidar@npm:3.6.0"
@@ -7380,6 +7409,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-select@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "css-select@npm:5.1.0"
+  dependencies:
+    boolbase: ^1.0.0
+    css-what: ^6.1.0
+    domhandler: ^5.0.2
+    domutils: ^3.0.1
+    nth-check: ^2.0.1
+  checksum: 2772c049b188d3b8a8159907192e926e11824aea525b8282981f72ba3f349cf9ecd523fdf7734875ee2cb772246c22117fc062da105b6d59afe8dcd5c99c9bda
+  languageName: node
+  linkType: hard
+
 "css-selector-parser@npm:^1.0.0":
   version: 1.4.1
   resolution: "css-selector-parser@npm:1.4.1"
@@ -7397,7 +7439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-what@npm:^6.0.1":
+"css-what@npm:^6.0.1, css-what@npm:^6.1.0":
   version: 6.1.0
   resolution: "css-what@npm:6.1.0"
   checksum: b975e547e1e90b79625918f84e67db5d33d896e6de846c9b584094e529f0c63e2ab85ee33b9daffd05bff3a146a1916bec664e18bb76dd5f66cbff9fc13b2bbe
@@ -10124,6 +10166,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-remark-autolink-headers@npm:^6.13.1":
+  version: 6.13.1
+  resolution: "gatsby-remark-autolink-headers@npm:6.13.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    github-slugger: ^1.5.0
+    lodash: ^4.17.21
+    mdast-util-to-string: ^2.0.0
+    unist-util-visit: ^2.0.3
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    react: ^18.0.0 || ^0.0.0
+    react-dom: ^18.0.0 || ^0.0.0
+  checksum: 356e146e00c0c525799265ffe690932dc727d46103cd74a07692c296d53ce1ba9acbe730ef1183787882d2a62c3fbc9d586703eca76f3355c0d3733bee1db18a
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-copy-linked-files@npm:^6.13.1":
+  version: 6.13.1
+  resolution: "gatsby-remark-copy-linked-files@npm:6.13.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    cheerio: ^1.0.0-rc.10
+    fs-extra: ^11.1.1
+    is-relative-url: ^3.0.0
+    lodash: ^4.17.21
+    path-is-inside: ^1.0.2
+    probe-image-size: ^7.2.3
+    unist-util-visit: ^2.0.3
+  peerDependencies:
+    gatsby: ^5.0.0-next
+  checksum: 4eee4bba8e388a812f9a7eae7721e1f68ee5e723423c7cddddad3048857e1a67c7cf4acfa31f5fa7cf08f875df236037e4796e61e5c0e563d224a24bcc5138a1
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-images@npm:^7.13.1":
+  version: 7.13.1
+  resolution: "gatsby-remark-images@npm:7.13.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    chalk: ^4.1.2
+    cheerio: ^1.0.0-rc.10
+    gatsby-core-utils: ^4.13.1
+    is-relative-url: ^3.0.0
+    lodash: ^4.17.21
+    mdast-util-definitions: ^4.0.0
+    query-string: ^6.14.1
+    unist-util-select: ^3.0.4
+    unist-util-visit-parents: ^3.1.1
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    gatsby-plugin-sharp: ^5.0.0-next
+  checksum: d6f6f86ea3071c98f299344e47d437e0f38bdc18e4698ff928fdbd94d864d8d3def78b6a730561a82d454801e90c6be4715bf5433eca9a0650d00997435a552c
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-prismjs-copy-button@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "gatsby-remark-prismjs-copy-button@npm:0.4.0"
+  peerDependencies:
+    gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
+  checksum: 0423581ac7edcc1a55440163f4d93ed4b90ee096d61110614e03f1b2f9f2b75a86f9d5af19225489adbf4e0382c2f15af06d5b46a74983a4bd8ba967b4326012
+  languageName: node
+  linkType: hard
+
 "gatsby-remark-prismjs@npm:^7.13.1":
   version: 7.13.1
   resolution: "gatsby-remark-prismjs@npm:7.13.1"
@@ -10135,6 +10242,21 @@ __metadata:
     gatsby: ^5.0.0-next
     prismjs: ^1.15.0
   checksum: b2e3b2170af7d74f940b200360d4a49067e132c78e3ab8c131ecb2280b34b39c379fc8755cd1cdc967add697cb126c663bc233dd69fcf2a194f53ffc0e13b1a6
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-responsive-iframe@npm:^6.13.1":
+  version: 6.13.1
+  resolution: "gatsby-remark-responsive-iframe@npm:6.13.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    cheerio: ^1.0.0-rc.10
+    common-tags: ^1.8.2
+    lodash: ^4.17.21
+    unist-util-visit: ^2.0.3
+  peerDependencies:
+    gatsby: ^5.0.0-next
+  checksum: b0a3c8aa0a2cc3d21b52fa8b309d6afc800121059400f98a3436c822b62246308a4c3b7c2709c4f49d28f7309bd64f7ef0ce51be56c3599809ab83e9ab42ae86
   languageName: node
   linkType: hard
 
@@ -10621,7 +10743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github-slugger@npm:^1.2.1":
+"github-slugger@npm:^1.2.1, github-slugger@npm:^1.5.0":
   version: 1.5.0
   resolution: "github-slugger@npm:1.5.0"
   checksum: c70988224578b3bdaa25df65973ffc8c24594a77a28550c3636e495e49d17aef5cdb04c04fa3f1744babef98c61eecc6a43299a13ea7f3cc33d680bf9053ffbe
@@ -11380,7 +11502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^8.0.0":
+"htmlparser2@npm:^8.0.0, htmlparser2@npm:^8.0.1":
   version: 8.0.2
   resolution: "htmlparser2@npm:8.0.2"
   dependencies:
@@ -16117,6 +16239,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parse5-htmlparser2-tree-adapter@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "parse5-htmlparser2-tree-adapter@npm:7.0.0"
+  dependencies:
+    domhandler: ^5.0.2
+    parse5: ^7.0.0
+  checksum: fc5d01e07733142a1baf81de5c2a9c41426c04b7ab29dd218acb80cd34a63177c90aff4a4aee66cf9f1d0aeecff1389adb7452ad6f8af0a5888e3e9ad6ef733d
+  languageName: node
+  linkType: hard
+
 "parse5@npm:^5.1.1":
   version: 5.1.1
   resolution: "parse5@npm:5.1.1"
@@ -16128,6 +16260,15 @@ __metadata:
   version: 6.0.1
   resolution: "parse5@npm:6.0.1"
   checksum: 7d569a176c5460897f7c8f3377eff640d54132b9be51ae8a8fa4979af940830b2b0c296ce75e5bd8f4041520aadde13170dbdec44889975f906098ea0002f4bd
+  languageName: node
+  linkType: hard
+
+"parse5@npm:^7.0.0":
+  version: 7.1.2
+  resolution: "parse5@npm:7.1.2"
+  dependencies:
+    entities: ^4.4.0
+  checksum: 59465dd05eb4c5ec87b76173d1c596e152a10e290b7abcda1aecf0f33be49646ea74840c69af975d7887543ea45564801736356c568d6b5e71792fd0f4055713
   languageName: node
   linkType: hard
 
@@ -16193,6 +16334,13 @@ __metadata:
   version: 1.0.1
   resolution: "path-is-absolute@npm:1.0.1"
   checksum: 060840f92cf8effa293bcc1bea81281bd7d363731d214cbe5c227df207c34cd727430f70c6037b5159c8a870b9157cba65e775446b0ab06fd5ecc7e54615a3b8
+  languageName: node
+  linkType: hard
+
+"path-is-inside@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "path-is-inside@npm:1.0.2"
+  checksum: 0b5b6c92d3018b82afb1f74fe6de6338c4c654de4a96123cb343f2b747d5606590ac0c890f956ed38220a4ab59baddfd7b713d78a62d240b20b14ab801fa02cb
   languageName: node
   linkType: hard
 
@@ -18665,7 +18813,12 @@ __metadata:
     gatsby-plugin-postcss: ^6.13.1
     gatsby-plugin-sharp: ^5.13.1
     gatsby-plugin-sitemap: ^6.13.1
+    gatsby-remark-autolink-headers: ^6.13.1
+    gatsby-remark-copy-linked-files: ^6.13.1
+    gatsby-remark-images: ^7.13.1
     gatsby-remark-prismjs: ^7.13.1
+    gatsby-remark-prismjs-copy-button: ^0.4.0
+    gatsby-remark-responsive-iframe: ^6.13.1
     gatsby-source-filesystem: ^5.13.1
     gatsby-transformer-remark: ^6.13.1
     gatsby-transformer-sharp: ^5.13.1
@@ -20491,7 +20644,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit-parents@npm:^3.0.0":
+"unist-util-visit-parents@npm:^3.0.0, unist-util-visit-parents@npm:^3.1.1":
   version: 3.1.1
   resolution: "unist-util-visit-parents@npm:3.1.1"
   dependencies:
