@@ -10209,14 +10209,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-hubspot-node@npm:1.0.1":
-  version: 1.0.1
-  resolution: "gatsby-source-hubspot-node@npm:1.0.1"
+"gatsby-source-hubspot-node@npm:1.1.0":
+  version: 1.1.0
+  resolution: "gatsby-source-hubspot-node@npm:1.1.0"
   dependencies:
     node-fetch: ^2.6.8
   peerDependencies:
     gatsby: ^5.13.3
-  checksum: b941c27753186d2cc5584fe2821c6a9c6c930a3ebb6021e1629391ccfdf45058c6e9f26e18a04a7e7d93b9646d146d711f5c78b084830a422641188f0fcdfb23
+  checksum: 82e5a2801726017b9761a6561ae01fbaf4468287ee512e6bbfb132a2d7b33b7ef907e9ede8e7f39071fb548e00e4a5d80bf244cf46500bec4b8f9bde6a154e23
   languageName: node
   linkType: hard
 
@@ -18638,7 +18638,7 @@ __metadata:
     gatsby-remark-images: ^7.13.1
     gatsby-remark-responsive-iframe: ^6.13.1
     gatsby-source-filesystem: ^5.13.1
-    gatsby-source-hubspot-node: 1.0.1
+    gatsby-source-hubspot-node: 1.1.0
     gatsby-transformer-remark: ^6.13.1
     gatsby-transformer-sharp: ^5.13.1
     postcss: ^8.4.38

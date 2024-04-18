@@ -28,7 +28,7 @@
     "gatsby-remark-images": "^7.13.1",
     "gatsby-remark-responsive-iframe": "^6.13.1",
     "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-source-hubspot-node": "1.0.1",
+    "gatsby-source-hubspot-node": "1.1.0",
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "postcss": "^8.4.38",
