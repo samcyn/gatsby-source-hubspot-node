@@ -2,7 +2,7 @@
   "name": "gatsby-source-hubspot-node",
   "description": "The `gatsby-source-hubspot-node` plugin seamlessly integrates your Gatsby site with HubSpot, enabling you to source data directly from HubSpot into your Gatsby application",
   "author": "samcyn <samsoniyanda@outlook.com>",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "./dist/gatsby-node.js",
   "files": [
