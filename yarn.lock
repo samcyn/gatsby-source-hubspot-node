@@ -10209,18 +10209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-hubspot-node@npm:1.1.0":
-  version: 1.1.0
-  resolution: "gatsby-source-hubspot-node@npm:1.1.0"
-  dependencies:
-    node-fetch: ^2.6.8
-  peerDependencies:
-    gatsby: ^5.13.3
-  checksum: 82e5a2801726017b9761a6561ae01fbaf4468287ee512e6bbfb132a2d7b33b7ef907e9ede8e7f39071fb548e00e4a5d80bf244cf46500bec4b8f9bde6a154e23
-  languageName: node
-  linkType: hard
-
-"gatsby-source-hubspot-node@workspace:packages/plugin":
+"gatsby-source-hubspot-node@1.1.0, gatsby-source-hubspot-node@workspace:packages/plugin":
   version: 0.0.0-use.local
   resolution: "gatsby-source-hubspot-node@workspace:packages/plugin"
   dependencies:
