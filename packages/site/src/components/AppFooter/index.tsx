@@ -3,7 +3,7 @@ import AppIcon from '@components/AppIcon';
 
 const AppFooter = () => {
   return (
-    <section className="flex items-center justify-between py-12 px-6 border-t mt-14 border-gray-1">
+    <section className="flex items-center justify-between py-8 lg:py-12 lg:px-6 border-t lg:mt-14 border-gray-1">
       <small className="text-xs text-gray-60/90 dark:text-gray-50/90">Made with love by Samson Iyanda</small>
       <ul className="flex justify-between gap-8 text-sm">
         <li className="flex items-center gap-4">

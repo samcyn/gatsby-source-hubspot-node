@@ -72,7 +72,7 @@ const HeadingComponent = ({
 const MyH1 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H1 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-3xl mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-3xl mt-6 lg:mt-12 mb-6',
     Component: 'h1',
   });
   return <H1 />;
@@ -81,7 +81,7 @@ const MyH1 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingEle
 const MyH2 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H2 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-2xl mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-2xl mt-6 lg:mt-12 mb-6',
     Component: 'h2',
   });
   return <H2 />;
@@ -90,7 +90,7 @@ const MyH2 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingEle
 const MyH3 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H3 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-xl mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-xl mt-6 lg:mt-12 mb-6',
     Component: 'h3',
   });
   return <H3 />;
@@ -99,7 +99,7 @@ const MyH3 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingEle
 const MyH4 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H4 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-lg mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-lg mt-6 lg:mt-12 mb-6',
     Component: 'h4',
   });
   return <H4 />;
@@ -108,7 +108,7 @@ const MyH4 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingEle
 const MyH5 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H5 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-sm mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-sm mt-6 lg:mt-12 mb-6',
     Component: 'h5',
   });
   return <H5 />;
@@ -117,7 +117,7 @@ const MyH5 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingEle
 const MyH6 = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
   const H6 = HeadingComponent({
     ...props,
-    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-xs mt-12 mb-6',
+    className: 'relative text-dark dark:text-white font-bold text-xs md:text-sm lg:text-xs mt-6 lg:mt-12 mb-6',
     Component: 'h6',
   });
   return <H6 />;
