@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 function splitLanguageAndTitle(children: React.ReactNode) {
@@ -146,7 +146,37 @@ const MyPre = ({
   children,
   ...rest
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {
+  const timeoutRef = useRef<NodeJS.Timeout>();
+  const [isCopied, setIsCopied] = useState(false);
+  const preRef = useRef<HTMLPreElement | null>(null);
   const { language, title } = splitLanguageAndTitle(children);
+
+  useEffect(() => {
+    // prevent memory leakage
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopy = async () => {
+    const preElem = preRef.current;
+    if (window && preElem) {
+      const code = preElem.getElementsByTagName('code')[0];
+      try {
+        await navigator.clipboard.writeText(code.innerText);
+        setIsCopied(true);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+        setIsCopied(false);
+      }
+
+      timeoutRef.current = setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
   return (
     <>
       {title && (
@@ -166,6 +196,7 @@ const MyPre = ({
           text-[13.5px] leading-5 rounded overflow-auto 
           break-normal ${className || ''}
         `}
+          ref={preRef}
         >
           <button
             name="copy code to clipboard"
@@ -175,8 +206,10 @@ const MyPre = ({
             text-xs leading-3 transition-colors 
             absolute top-1 right-1 rounded
             hover:bg-primary hover:text-white"
+            disabled={isCopied}
+            onClick={handleCopy}
           >
-            Copy
+            {isCopied ? 'Copied' : 'Copy'}
             <span aria-roledescription="status" className="sr-only">
               copy code to clipboard
             </span>

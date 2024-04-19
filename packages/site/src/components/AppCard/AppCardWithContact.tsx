@@ -15,7 +15,7 @@ type Props = {
 const AppCardWithContact = ({ properties: { firstname, lastname, email, hs_object_id } }: Props) => {
   return (
     <AppCard className="bg-primary dark:bg-gray-80">
-      <Link to="/" className="block w-full no-underline">
+      <Link to="#" className="block w-full no-underline">
         <div className="relative overflow-hidden">
           <div className="relative p-4 md:p-6 z-1">
             <small className="text-white opacity-40">#{hs_object_id}</small>
