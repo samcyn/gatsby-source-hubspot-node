@@ -1,4 +1,4 @@
-import React, { Children, JSXElementConstructor, ReactElement, ReactNode, useState } from 'react';
+import React, { Children, FunctionComponentElement, ReactNode, useState } from 'react';
 
 type AppTabProps = {
   isActive?: boolean;
@@ -9,7 +9,7 @@ type AppTabProps = {
 };
 
 type Props = {
-  children: Array<ReactElement<AppTabProps, JSXElementConstructor<unknown>>>;
+  children: Array<FunctionComponentElement<AppTabProps>>;
 };
 
 export const AppTab = ({ isActive, position, ariaLabelledby, children }: AppTabProps) => {
@@ -26,12 +26,15 @@ export const AppTab = ({ isActive, position, ariaLabelledby, children }: AppTabP
   );
 };
 
+AppTab.displayName = 'AppTab';
+
 const AppTabs = ({ children }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nodes = Children.map(children, (node) => {
-    if (node.type.name !== 'AppTab') {
-      throw new Error('Use AppTab within AppTabs');
+    console.log(node.type.name);
+    if (node.type.displayName !== 'AppTab') {
+      console.warn('Use AppTab within AppTabs');
     }
     return node;
   });

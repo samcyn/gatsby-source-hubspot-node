@@ -27,7 +27,7 @@ export default DashboardPage;
 export const Head: HeadFC = () => (
   <>
     <html lang="en" />
-    <title>Dashboard Page</title>
+    <title>Demo Page</title>
     <meta name="author" content="Samson Iyanda"></meta>
     <meta name="description" content="site for gatsby source hubspot plugin documentation"></meta>
     <meta name="keywords" content="gatsby, gatsby plugin, reactjs, hubspot"></meta>

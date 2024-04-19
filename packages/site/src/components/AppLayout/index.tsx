@@ -26,7 +26,10 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         >
           {/* overlay */}
           {open && (
-            <div onClick={onOpen} className="absolute lg:hidden inset-0 h-full min-h-screen bg-white/70 z-[1000]"></div>
+            <div
+              onClick={onOpen}
+              className="absolute lg:hidden inset-0 h-full min-h-screen bg-white/70 dark:bg-dark/90 z-[1000]"
+            ></div>
           )}
           <section className="px-4 md:px-6 xl:px-19">
             <AppHeader onOpen={onOpen} />
