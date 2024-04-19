@@ -9,7 +9,7 @@ require('dotenv').config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `site`,
-    siteUrl: `https://www.samsoniyanda.com`,
+    siteUrl: `https://gatsby-source-hubspot-node-plugin.netlify.app/`,
   },
   graphqlTypegen: true,
   plugins: [

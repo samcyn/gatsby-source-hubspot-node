@@ -35,7 +35,9 @@ export const query = graphql`
 
 export const Head: HeadFC<Queries.IndexPageQuery> = ({ data }) => (
   <>
-    <title>{data.mdx.frontmatter.title}</title>
+    <title>
+      {data.mdx.frontmatter.title} {data.mdx.frontmatter.tail}
+    </title>
     <meta name="author" content="Samson Iyanda"></meta>
     <meta name="description" content="site for gatsby source hubspot plugin documentation"></meta>
     <meta name="keywords" content="gatsby, gatsby plugin, reactjs, hubspot"></meta>

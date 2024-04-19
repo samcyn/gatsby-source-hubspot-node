@@ -21,7 +21,7 @@ type Props = {
 
 const AppCardWithPhoto = ({ author_name, title, featured_image, blog_author }: Props) => (
   <AppCard className="bg-white dark:bg-gray-80 shadow-md hover:shadow-lg transition overflow-hidden rounded-lg group">
-    <Link to="/" className="block w-full no-underline">
+    <Link to="#" className="block w-full no-underline">
       <figure className="w-full h-[165px] overflow-hidden">
         <AppImage
           className="w-full h-full transition-transform group-hover:scale-105"
