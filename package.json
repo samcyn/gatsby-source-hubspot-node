@@ -27,7 +27,7 @@
     "develop:plugin": "yarn workspace gatsby-source-hubspot-node develop",
     "develop:site": "yarn workspace site develop",
     "develop": "npm-run-all -l -p 'develop:site' 'develop:plugin'",
-    "build:plugin": "yarn workspace plugin build",
+    "build:plugin": "yarn workspace gatsby-source-hubspot-node build",
     "build:site": "yarn workspace site build",
     "build": "npm-run-all -s 'build:plugin' 'build:site'",
     "serve:site": "yarn workspace site serve",
